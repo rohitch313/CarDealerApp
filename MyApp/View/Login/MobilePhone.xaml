@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyApp.View.Login.MobilePhone"               xmlns:viewmodel="clr-namespace:MyApp.ViewModel"
+x:DataType="viewmodel:PostLoginViewModel" Shell.TabBarIsVisible="False" BackgroundColor="White">
+    <Shell.TitleView>
+        <StackLayout Orientation="Horizontal">
+            <!-- Add your logo here -->
+            <Image Source="logo_1.png"/>
+        </StackLayout>
+    </Shell.TitleView>
+
+    <Grid RowDefinitions="auto,auto, auto,*">
+
+        <Label Text="Add your mobile number" Grid.Row="0" TextColor="#191C1C" VerticalOptions="Start" HorizontalOptions="Start" FontAttributes="Bold" FontSize="16" Margin="15,30,0,0"/>
+        <Label Text="We’ll need to confirm it by sending a text" Grid.Row="1" VerticalOptions="Start" HorizontalOptions="Start" FontAttributes="Bold" FontSize="14" TextColor="#3F4948" Margin="15,4,0,0"/>
+        <Frame  Grid.Row="2" BorderColor="#6F7978" WidthRequest="343" HeightRequest="56" Padding="0" CornerRadius="4" Margin="0,45,0,0" >
+            <Entry x:Name="entryMobileNumber" Text="{Binding Phone}" Margin="15,10,0,7" Placeholder="Enter Your Mobile Number" PlaceholderColor="#3F4948" TextColor="Black" HorizontalOptions="Start" VerticalOptions="Start" FontSize="16" Keyboard="Numeric" />
+        </Frame>
+        <Button Text="Send OTP" Grid.Row="3" Command="{Binding PostLoginCommand}" Style="{StaticResource LargeButtonColor}" VerticalOptions="End" HeightRequest="40" WidthRequest="343" Margin="0,0,0,10" />
+    </Grid>
+</ContentPage>

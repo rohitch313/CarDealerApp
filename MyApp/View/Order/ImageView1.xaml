@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyApp.ImageView1"
+                         xmlns:model="clr-namespace:MyApp.Model"
+xmlns:viewmodel="clr-namespace:MyApp.ViewModel" x:DataType="viewmodel:ImageViewModel"
+             Title="ImageView1" BackgroundColor="White" >
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior Command="{Binding BackCommand}"
+                      IsEnabled="False"  />
+    </Shell.BackButtonBehavior>
+    <ContentPage.Content>
+        <StackLayout>
+            <Image x:Name="fullScreenImage" Aspect="AspectFit" WidthRequest="343" HeightRequest="704">
+
+            </Image>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

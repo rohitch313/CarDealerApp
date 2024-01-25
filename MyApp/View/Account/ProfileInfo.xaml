@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyApp.View.Account.ProfileInfo"
+             Title="Account" BackgroundColor="White"
+             xmlns:model="clr-namespace:MyApp.Models"
+             xmlns:viewmodel="clr-namespace:MyApp.ViewModel" 
+             >
+
+    <VerticalStackLayout Spacing="20">
+        <Frame BackgroundColor="#4aa09b" Margin="20" CornerRadius="10">
+            <HorizontalStackLayout Spacing="20">
+                <Image Source="admin" />
+                <VerticalStackLayout Spacing="2">
+                    <Label Text="Name of Dealership" TextColor="White" />
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Welcome ," TextColor="White" />
+                                <Span Text="{Binding DuePayments[0].UserName}" TextColor="White" />
+                                <Span Text="!" TextColor="White" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="ID-" TextColor="White" />
+                                <Span Text="{Binding DuePayments[0].Id}" TextColor="White" />
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+
+        </Frame>
+
+        <Frame CornerRadius="5" HasShadow="True" Padding="0" BackgroundColor="White" BorderColor="Transparent">
+            <StackLayout Orientation="Horizontal" WidthRequest="343" HeightRequest="48">
+                <Button Text="Profile Information" TextColor="Black" FontSize="16" BackgroundColor="Transparent" VerticalOptions="CenterAndExpand" Clicked="ProfileInfos"/>
+                <Image Source="smallicon" WidthRequest="24" HeightRequest="24" VerticalOptions="CenterAndExpand" Margin="140,0,0,0" />
+            </StackLayout>
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="ProfileInfos" />
+            </Frame.GestureRecognizers>
+        </Frame>
+
+
+        <!-- Customer Support -->
+        <Frame CornerRadius="5" HasShadow="True" Padding="0" BackgroundColor="White" BorderColor="Transparent">
+            <StackLayout Orientation="Horizontal" WidthRequest="343" HeightRequest="48">
+                <Button Text="Customer Support" TextColor="Black" FontSize="16" BackgroundColor="Transparent" VerticalOptions="CenterAndExpand" Clicked="CustomerInfo"/>
+                <Image Source="smallicon" WidthRequest="24" HeightRequest="24" VerticalOptions="CenterAndExpand" Margin="140,0,0,0" />
+            </StackLayout>
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="CustomerInfo" />
+            </Frame.GestureRecognizers>
+        </Frame>
+
+        <!-- Terms -->
+        <Frame CornerRadius="5" HasShadow="True" Padding="0" BackgroundColor="White" Margin="0,10,0,0" BorderColor="Transparent">
+            <StackLayout Orientation="Horizontal" WidthRequest="343" HeightRequest="48">
+                <Button Text="Terms" TextColor="Black" FontSize="16" BackgroundColor="Transparent" VerticalOptions="CenterAndExpand" Clicked="TermsInfos"/>
+                <Image Source="smallicon" WidthRequest="24" HeightRequest="24" VerticalOptions="CenterAndExpand" Margin="230,0,0,0"/>
+            </StackLayout>
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="TermsInfos" />
+            </Frame.GestureRecognizers>
+        </Frame>
+
+        <!-- Privacy Policy -->
+        <Frame CornerRadius="5" HasShadow="True" Padding="0" BackgroundColor="White" Margin="0,10,0,0" BorderColor="Transparent">
+            <StackLayout Orientation="Horizontal" WidthRequest="343" HeightRequest="48">
+                <Button Text="Privacy Policy" TextColor="Black" FontSize="16" BackgroundColor="Transparent" VerticalOptions="CenterAndExpand" />
+                <Image Source="smallicon" WidthRequest="24" HeightRequest="24" VerticalOptions="CenterAndExpand" Margin="175,0,0,0"/>
+            </StackLayout>
+        </Frame>
+
+        <!-- Logout -->
+        <Frame CornerRadius="5" HasShadow="True" Padding="0" BackgroundColor="White" Margin="0,10,0,0" BorderColor="Transparent">
+            <StackLayout Orientation="Horizontal" WidthRequest="343" HeightRequest="48">
+                <Button Text="Logout" TextColor="Black" FontSize="16" BackgroundColor="Transparent" VerticalOptions="CenterAndExpand" Clicked="Logout" />
+                <Image Source="iconlogout" WidthRequest="24" HeightRequest="24" VerticalOptions="CenterAndExpand" Margin="220,0,0,0"/>
+            </StackLayout>
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="Logout" />
+            </Frame.GestureRecognizers>
+        </Frame>
+
+    </VerticalStackLayout>
+</ContentPage>

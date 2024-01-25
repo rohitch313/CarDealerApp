@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyApp.MyResources.CustomResourceDictonary">
+
+    <Color x:Key="FrameBackground">#F7FAF8
+    </Color>
+    <Color x:Key="FrameBackgroundDark">Black
+    </Color>
+    <Shadow x:Key="shadowAuditDue" Brush="#00000026" Offset="10,10"></Shadow>
+
+
+
+
+    <Color x:Key="FrameBackgroundAuditDue">#FAFDFB
+
+
+
+    </Color>
+
+    <Color x:Key="PrimaryTextColor">Black</Color>
+
+    
+    
+    <Style x:Key="PaymentFrame" TargetType="Frame">
+
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource FrameBackground}, Dark={StaticResource FrameBackground}}" />
+
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Margin" Value="0,0,0,16"/>
+        <Setter Property="WidthRequest" Value="343"/>
+        <Setter Property="BorderColor" Value="#FAF9F8"/>
+        <Setter Property="CornerRadius" Value="0"/>
+        
+    </Style>
+
+
+    <Style x:Key="FrameAuditDue" TargetType="Frame">
+
+        <Setter Property="BackgroundColor" Value="{StaticResource FrameBackgroundAuditDue}" />
+
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="HasShadow" Value="True"/>
+        <Setter Property="Shadow" Value="{Binding shadowAuditDue }"/>
+
+        <Setter Property="Margin" Value="0,0,0,16"/>
+        <Setter Property="WidthRequest" Value="343"/>
+        <Setter Property="BorderColor" Value="#FAF9F8"/>
+        <Setter Property="CornerRadius" Value="0"/>
+        <Setter Property="HeightRequest" Value="136"/>
+    </Style>
+
+    <Style x:Key="LabelPrimaryMedium" TargetType="Label">
+
+        <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}" />
+        <Setter Property="FontSize" Value="14"/>
+    </Style>
+
+    <Style x:Key="LargeButtonColor" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="#4AA09B" />
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="WidthRequest" Value="343" />
+        <Setter Property="HeightRequest" Value="40" />
+        <Setter Property="CornerRadius" Value="20" />
+    </Style>
+
+    <Style x:Key="SmallFrameBox" TargetType="Frame">
+        <Setter Property="WidthRequest" Value="48" />
+        <Setter Property="HeightRequest" Value="48" />
+        <Setter Property="CornerRadius" Value="5" />
+        <Setter Property="BorderColor" Value="#919191" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="HasShadow" Value="False" />
+
+
+    </Style>
+
+    <Style x:Key="ImageButton1" TargetType="ImageButton">
+        <Setter Property="BackgroundColor" Value="#E0FFFA" />
+        <Setter Property="WidthRequest" Value="100" />
+        <Setter Property="HeightRequest" Value="100" />
+        <Setter Property="CornerRadius" Value="2" />
+        <Setter Property="BorderColor" Value="#6F7978" />
+        <Setter Property="BorderWidth" Value="2" />
+        <Setter Property="Opacity" Value="10" />
+        <Setter Property="Aspect" Value="Fill" />
+    </Style>
+
+    <Style x:Key="LargeButtonNoColor" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="White" />
+        <Setter Property="TextColor" Value="#4AA09B" />
+        <Setter Property="WidthRequest" Value="343" />
+        <Setter Property="HeightRequest" Value="40" />
+        <Setter Property="CornerRadius" Value="20" />
+        <Setter Property="BorderColor" Value="#6F7978" />
+        <Setter Property="BorderWidth" Value="0.9" />
+    </Style>
+
+
+    <Style x:Key="CustomerInfoIcon" TargetType="Image">
+        <Setter Property="WidthRequest" Value="24" />
+        <Setter Property="HeightRequest" Value="24" />
+        <Setter Property="HorizontalOptions" Value="End" />
+        <Setter Property="Margin" Value="70,0,0,10" />
+    </Style>
+
+    <Style x:Key="ImageButton" TargetType="ImageButton">
+        <Setter Property="BackgroundColor" Value="#E0FFFA" />
+        <Setter Property="WidthRequest" Value="100" />
+        <Setter Property="HeightRequest" Value="100" />
+        <Setter Property="CornerRadius" Value="47" />
+        <Setter Property="BorderColor" Value="#6F7978" />
+        <Setter Property="BorderWidth" Value="2" />
+        <Setter Property="Opacity" Value="10" />
+        <Setter Property="Aspect" Value="Fill" />
+    </Style>
+
+    <!--<Style x:Key="LabelPrimaryLarge" TargetType="Label">
+
+        <Setter Property="TextColor" Value="{StaticResource primaryTextColor}" />
+        <Setter Property="FontSize" Value="16"/>
+
+
+    </Style>
+
+    <Style x:Key="LabelPrimarySmall" TargetType="Label">
+
+        <Setter Property="TextColor" Value="{StaticResource primaryTextColor}" />
+        <Setter Property="FontSize" Value="12"/>
+
+
+    </Style>
+
+    <Style x:Key="LabelPrimaryExtraSmall" TargetType="Label">
+
+        <Setter Property="TextColor" Value="{StaticResource primaryTextColor}" />
+        <Setter Property="FontSize" Value="10"/>
+
+
+    </Style>-->
+
+</ResourceDictionary>

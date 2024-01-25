@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               x:Class="MyApp.View.Login.LoginPage" 
+             FlyoutItem.IsVisible="False"
+             Shell.NavBarIsVisible="False" Shell.TabBarIsVisible="True" BackgroundColor="White">
+
+
+    <Grid>
+        <Image Source="nxfin_logo.png" WidthRequest="202" HeightRequest="64" VerticalOptions="Start" HorizontalOptions="Center" Margin="0,90,0,0"/>
+        <Label Text="Discover the Future of Car Acquisition" FontFamily="AppTextFont" VerticalOptions="Start" HorizontalOptions="Center" Margin="0,180,0,0"  FontSize="16"/>
+        <Image Source="login_page_car.png" WidthRequest="350" HeightRequest="234" VerticalOptions="Center" HorizontalOptions="Center" Margin="40,30,0,0"/>
+        <Button Text="Log in" Style="{StaticResource LargeButtonColor}" VerticalOptions="End" Margin="0,0,0,80" Clicked="Button_Clicked" FontSize="16" Padding="0,0,0,2" />
+        <Button Text="Sign Up" Style="{StaticResource LargeButtonNoColor}" VerticalOptions="End" Margin="0,10,0,30" Clicked="Button_Clicked_1" Padding="0,0,0,2"/>
+
+    </Grid>
+</ContentPage>

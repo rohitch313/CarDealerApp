@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyApp.View.Account.CustomerSupportViewPage"
+             Title="Customer Support"
+             xmlns:model="clr-namespace:MyApp.Models"
+             xmlns:viewmodel="clr-namespace:MyApp.ViewModel" 
+             Shell.NavBarIsVisible="True"
+             BackgroundColor="White"
+             >
+    <StackLayout Margin="35,30,0,0">
+        <Grid ColumnDefinitions="Auto,Auto" RowDefinitions="Auto,Auto,Auto" RowSpacing="18" >
+            <!-- First Column: Labels or Values -->
+            <Grid Grid.Column="0" Grid.Row="0" WidthRequest="300" HeightRequest="60">
+                <Label Text="Call" TextColor="#191C1C" FontSize="16" FontAttributes="Bold"/>
+                <Label Text="{Binding DueCustomer[0].Call}" TextColor="#3F4948" Margin="0,25,0,0" />
+                <Image Source="phoneicon.png" Grid.Column="1" Style="{StaticResource CustomerInfoIcon}" HorizontalOptions="End" Margin="70,0,0,15">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </Image.GestureRecognizers>
+                </Image>
+            </Grid>
+            <Grid Grid.Column="0" Grid.Row="1"  WidthRequest="300" HeightRequest="60">
+                <Label Text="WhatsApp" TextColor="#191C1C" FontSize="16" FontAttributes="Bold" />
+                <Label Text="{Binding DueCustomer[0].WhatsApp}" TextColor="#3F4948" Margin="0,25,0,0" />
+                <Image Source="whatappicon.png" Grid.Row="1" Grid.Column="1" Style="{StaticResource CustomerInfoIcon}" Margin="0,0,0,15">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnWhatsAppIconTapped"/>
+                    </Image.GestureRecognizers>
+                </Image>
+            </Grid>
+            <Grid Grid.Column="0" Grid.Row="2"  WidthRequest="300" HeightRequest="60">
+                <Label Text="Email" FontSize="16" TextColor="#191C1C" FontAttributes="Bold" />
+                <Label Text="{Binding DueCustomer[0].Email}" TextColor="#3F4948" Margin="0,25,0,0" />
+                <Image Source="emailicon.png" Grid.Row="2" Grid.Column="1" Style="{StaticResource CustomerInfoIcon}" Margin="0,0,0,15">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnEmailIconTapped"/>
+                    </Image.GestureRecognizers>
+                </Image>
+            </Grid>
+        </Grid>
+    </StackLayout>
+</ContentPage>

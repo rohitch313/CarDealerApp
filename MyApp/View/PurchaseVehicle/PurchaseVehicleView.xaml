@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    xmlns:tabview="clr-namespace:Syncfusion.Maui.TabView;assembly=Syncfusion.Maui.TabView"
+             x:Class="MyApp.View.PurchaseVehicle.PurchaseVehicleView"
+                xmlns:local="clr-namespace:MyApp.ViewModel"
+             Title="Purchase Vehicle"  x:DataType="local:FullAggragatorViewModel" BackgroundColor="White">
+    <ContentPage.BindingContext>
+        <local:FullAggragatorViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <Style TargetType="tabview:SfTabItem" x:Key="TabItemStyle">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup>
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="TextColor" Value="#4AA09B" />
+
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="TextColor" Value="Black" />
+
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <!-- Define a custom toolbar item with the "+" icon -->
+        <ToolbarItem
+        IconImageSource="notifications_none.png"
+        Priority="0"
+        Order="Primary"
+           Clicked="ToolbarItem_Clicked"
+        />
+    </ContentPage.ToolbarItems>
+
+
+    <ScrollView>
+        <tabview:SfTabView x:Name="tabView"  IndicatorBackground="#4AA09B"  
+                           >
+            <tabview:SfTabView.Items >
+                <tabview:SfTabItem Header="Apply"    FontSize="14"  Style="{StaticResource TabItemStyle}" >
+                    <tabview:SfTabItem.Content>
+
+
+                        <Grid>
+                            <Grid Margin="10,16,10,0"  x:Name="Section1">                                <HorizontalStackLayout Spacing="9">                                    <Button Text="Aggregator" x:Name="SignButton" FontAttributes="Bold" Clicked="Sign_Clicked"  WidthRequest="110" HeightRequest="32" Padding="0,0,0,2" FontSize="Small"  BackgroundColor="#cce8e5" TextColor="Black" BorderWidth="0" CornerRadius="12" VerticalOptions="Start"/>                                    <Button Text="Open Market" WidthRequest="110"  Clicked="Market_Button_Clicked" HeightRequest="32" Padding="0,0,0,2" FontSize="Small" CornerRadius="12" VerticalOptions="Start"  BackgroundColor="White" TextColor="Black" BorderColor="Black" BorderWidth="1"/>                                    <Button Text="New Car Dealer" WidthRequest="130"  Clicked="New_Car_Clicked"   HeightRequest="32" Padding="0,0,0,2" FontSize="Small" CornerRadius="12" VerticalOptions="Start"  BackgroundColor="White" TextColor="Black" BorderColor="Black" BorderWidth="1"/>                                </HorizontalStackLayout>                                <VerticalStackLayout Margin="0,60,0,0" Spacing="15">                                    <Frame WidthRequest="343" HeightRequest="56" BorderColor="Black">                                        <Entry Placeholder="Purchase Amount"  x:Name="PurchaseAmountName" Text="{Binding Aggregators.PurchaseAmount}"  PlaceholderColor="Black"  WidthRequest="343" HeightRequest="56" Margin="25,0,0,0" MaxLength="8" Keyboard="Numeric"/>                                    </Frame>                                    <Frame WidthRequest="343" HeightRequest="56" Padding="0,0,20,0" BorderColor="Black">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <Picker x:Name="MakePicker" Grid.Column="0" Title="Make" TitleColor="#3F4948" HeightRequest="56" Margin="25,0,0,0" TextColor="Black"
+                                                 ItemsSource="{Binding Make}" SelectedItem="{Binding SelectedMake, Mode=TwoWay}">
+                                                <Picker.ItemDisplayBinding>
+                                                    <Binding Path="MakeName" />
+                                                </Picker.ItemDisplayBinding>
+
+                                                <!-- No need for a static array in XAML -->
+                                            </Picker>
+
+                                            <Image Grid.Column="1" Source="downicon" VerticalOptions="Center" HorizontalOptions="End" />
+                                        </Grid>
+                                    </Frame>
+
+
+                                    <Frame WidthRequest="343" HeightRequest="56" Padding="0,0,20,0" BorderColor="Black">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <Picker x:Name="ModelPicker" Grid.Column="0" Title="Model" TitleColor="#3F4948" HeightRequest="56" Margin="25,0,0,0" TextColor="Black"
+       ItemsSource="{Binding Model}"  SelectedItem="{Binding SelectedModel, Mode=TwoWay}">
+                                                <Picker.ItemDisplayBinding>
+                                                    <Binding Path="ModelName" />
+                                                </Picker.ItemDisplayBinding>
+                                            </Picker>
+                                            <!-- Populate your Picker items here -->
+
+                                            <Image Grid.Column="1" Source="downicon" VerticalOptions="Center" HorizontalOptions="End" />
+                                        </Grid>
+                                    </Frame>
+                                    <Frame WidthRequest="343" HeightRequest="56" Padding="0,0,20,0" BorderColor="Black">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <Picker x:Name="yearPicker" Grid.Column="0" Title="Year Of Registration" TitleColor="#3F4948" HeightRequest="56" Margin="25,0,0,0" TextColor="Black"
+                                                  ItemsSource="{Binding Year}"    SelectedItem="{Binding SelectedYear, Mode=TwoWay}">
+                                                <Picker.ItemDisplayBinding>
+                                                    <Binding Path="YearCode" />
+                                                </Picker.ItemDisplayBinding>
+
+                                                <!-- No need for a static array in XAML -->
+                                            </Picker>
+
+                                            <Image Grid.Column="1" Source="downicon" VerticalOptions="Center" HorizontalOptions="End" />
+                                        </Grid>
+                                    </Frame>                                    <Frame WidthRequest="343" HeightRequest="56" Padding="0,0,20,0" BorderColor="Black">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <Picker x:Name="VariantPicker" Grid.Column="0" Title="Variant" TitleColor="#3F4948" HeightRequest="56" Margin="25,0,0,0" TextColor="Black"
+                                                 ItemsSource="{Binding Variant}"    SelectedItem="{Binding SelectedVariant, Mode=TwoWay}">
+                                                <!-- No need for a static array in XAML -->
+                                                <Picker.ItemDisplayBinding>
+                                                    <Binding Path="VariantName" />
+                                                </Picker.ItemDisplayBinding>
+                                            </Picker>
+
+
+                                            <Image Grid.Column="1" Source="downicon" VerticalOptions="Center" HorizontalOptions="End" />
+                                        </Grid>
+                                    </Frame>                                    <Frame WidthRequest="343" HeightRequest="56" Padding="15,7,0,7" Margin="0,0,0,0"  BorderColor="Black">                                        <Grid ColumnDefinitions="*,auto">                                            <Entry Placeholder="Price Breakup" Text="{Binding Aggregators.PriceBreak}" x:Name=" priceimg" TextColor="Black"   IsEnabled="False" FontSize="16" PlaceholderColor="#3F4948"/>                                            <Button Background="transparent" ImageSource="greenplus.png" Grid.Column="1" HeightRequest="24" WidthRequest="24" Margin="10" Clicked="OpenbootomPrice"/>                                        </Grid>                                    </Frame>                                    <Frame WidthRequest="343" HeightRequest="56" Padding="15,7,0,7" Margin="0,0,0,0"  BorderColor="Black">                                        <Grid ColumnDefinitions="*,auto">                                            <Entry Placeholder="Stock-In" FontSize="16" Text="{Binding Aggregators.StockIn}"  x:Name=" stockinimg" TextColor="Black"  IsEnabled="False" PlaceholderColor="#3F4948"/>                                            <Button Background="transparent" ImageSource="greenplus.png" Grid.Column="1" HeightRequest="24" WidthRequest="24" Margin="10" Clicked="Openbootomstock"/>                                        </Grid>                                    </Frame>                                    <Frame WidthRequest="343" HeightRequest="56" Padding="15,7,0,7" Margin="0,0,0,0"  BorderColor="Black">                                        <Grid ColumnDefinitions="*,auto">                                            <Entry Placeholder="RC Availability" Text="{Binding Aggregators.RCAvailable}" x:Name=" rcimg"  TextColor="Black" FontSize="16" IsEnabled="False" PlaceholderColor="#3F4948"/>                                            <Button Background="transparent" ImageSource="greenplus.png" Grid.Column="1" HeightRequest="24" WidthRequest="24" Margin="10" Clicked="OpenbootomRc"/>                                        </Grid>                                    </Frame>                                    <Button Text="Submit" BackgroundColor="#4AA09B" Command="{Binding LoadAggregatorCommand}" TextColor="White" CornerRadius="22" HorizontalOptions="Center" WidthRequest="343" HeightRequest="40" Margin="0,10,0,10"/>                                </VerticalStackLayout>                            </Grid>
+
+                            <!--AggragatorEnd-->
+
+
+                            <Grid Margin="10,16,10,0"  x:Name="Section2" WidthRequest="343">
+
+                                <HorizontalStackLayout Spacing="9">
+                                    <Button Text="Aggregator" WidthRequest="110"  Clicked="Sign_Clicked" HeightRequest="32" Padding="0,0,0,2" FontSize="Small" CornerRadius="12" VerticalOptions="Start"  BackgroundColor="White" TextColor="Black" BorderColor="Black" BorderWidth="1"/>
+
+                                    <Button Text="Open Market" x:Name="MarketButton" FontAttributes="Bold" WidthRequest="110" HeightRequest="32" Padding="0,0,0,2" FontSize="Small"  BackgroundColor="#cce8e5" TextColor="Black" BorderWidth="0" CornerRadius="12" VerticalOptions="Start"/>
+
+                                    <Button Text="New Car Dealer" WidthRequest="130"  Clicked="New_Car_Clicked" HeightRequest="32" Padding="0,0,0,2" FontSize="Small" CornerRadius="12" VerticalOptions="Start"  BackgroundColor="White" TextColor="Black" BorderColor="Black" BorderWidth="1"/>
+                                </HorizontalStackLayout>
+
+                                <VerticalStackLayout Margin="0,60,0,0" Spacing="15">
+                                    <Grid RowDefinitions="*,auto">
+                                        <ScrollView>
+                                            <VerticalStackLayout>
+                                                <Frame WidthRequest="343" HeightRequest="56"  Padding="10,7,0,7" Margin="0,0,0,0" BorderColor="Black" >
+                                                    <Entry Placeholder="Purchase Amount" Text="{Binding OpenMarket.PurchaseAmount}" x:Name="PurchaseAmountEntry" Keyboard="Numeric" TextColor="Black" FontSize="16" PlaceholderColor="#3F4948"/>
+
+                                                </Frame>
+                                                <Frame WidthRequest="343" HeightRequest="56" Padding="10,7,0,7" Margin="0,15,0,0" BorderColor="Black">
+                                                    <Entry Placeholder="Token Amount" x:Name="TokenAmountEntry" Text="{Binding OpenMarket.TokenAmount}" Keyboard="Numeric" TextColor="Black" FontSize="16" PlaceholderColor="#3F4948"/>
+
+                                                </Frame>
+                                                <Frame WidthRequest="343" HeightRequest="56" Padding="10,7,0,7" Margin="0,15,0,0" BorderColor="Black">
+                                                    <Entry Placeholder="Withhold Amount" x:Name="WithholdAmountEntry" Text="{Binding OpenMarket.WithholdAmount}" Keyboard="Numeric" TextColor="Black" FontSize="16" PlaceholderColor="#3F4948"/>
+
+                                                </Frame>
+                                                <Frame WidthRequest="343" HeightRequest="56" Padding="10,7,0,7" Margin="0,15,0,0" BorderColor="Black">
+                                                    <Entry Placeholder="Seller Contact Number" Text="{Binding OpenMarket.SellerContactNumber}" Keyboard="Numeric" x:Name="SellerContactNumberEntry" TextColor="Black" FontSize="16" PlaceholderColor="#3F4948"/>
+
+                                                </Frame>
+                                                <Frame WidthRequest="343" HeightRequest="56" Padding="10,7,0,7" Margin="0,15,0,0" BorderColor="Black">
+                                                    <Entry Placeholder="Seller Email Address" TextColor="Black" Text="{Binding OpenMarket.SellerEmailAddress}" x:Name="SellerEmailAddressEntry" FontSize="16" PlaceholderColor="#3F4948"/>
+
+                                                </Frame>
+                                                <Frame WidthRequest="343" HeightRequest="56" Padding="10,7,0,7" Margin="0,15,0,0" BorderColor="Black">
+                                                    <Entry Placeholder="Vehicle Number" x:Name="VehicleNumberEntry" Text="{Binding OpenMarket.VehicleNumber}" TextColor="Black" FontSize="16" PlaceholderColor="#3F4948"/>
+
+
+                                                </Frame>
+
+                                                <Frame WidthRequest="343" HeightRequest="56"  Padding="10,7,0,7" Margin="0,15,0,0" BorderColor="Black" >
+                                                    <Grid ColumnDefinitions="*,auto">
+                                                        <Entry Placeholder="Payment Proof" x:Name="paymentproof" Text="{Binding OpenMarket.PaymentProof}" TextColor="Black" IsEnabled="False" FontSize="16" PlaceholderColor="#3F4948"/>
+                                                        <Button Clicked="OpenbootomPaymentProof" TextColor="Black" Background="transparent" ImageSource="greenplus.png" Grid.Column="1" HeightRequest="24" WidthRequest="24" Margin="10"/>
+                                                    </Grid>
+
+                                                </Frame>
+                                                <Frame WidthRequest="343" HeightRequest="56" Padding="10,7,0,7" Margin="0,15,0,0"  BorderColor="Black">
+                                                    <Grid ColumnDefinitions="*,auto">
+                                                        <Entry Placeholder="Seller Adhaar" x:Name="sellerAdhar" Text="{Binding OpenMarket.SellerAdhaar}" TextColor="Black" IsEnabled="False" FontSize="16" PlaceholderColor="#3F4948"/>
+                                                        <Button Clicked="OpenbootomSellerAdhar" TextColor="Black" Background="transparent" ImageSource="greenplus.png" Grid.Column="1" HeightRequest="24" WidthRequest="24" Margin="10"/>
+                                                    </Grid>
+                                                </Frame>
+                                                <Frame WidthRequest="343" HeightRequest="56" Padding="10,7,0,7" Margin="0,15,0,0"  BorderColor="Black">
+                                                    <Grid ColumnDefinitions="*,auto">
+                                                        <Entry Placeholder="Seller PAN " x:Name="sellerPan" Text="{Binding OpenMarket.SellerPAN}" IsEnabled="False" TextColor="Black" FontSize="16" PlaceholderColor="#3F4948"/>
+                                                        <Button Clicked="OpenbootomSellerPan" TextColor="Black" Background="transparent" ImageSource="greenplus.png" Grid.Column="1" HeightRequest="24" WidthRequest="24" Margin="10"/>
+                                                    </Grid>
+                                                </Frame>
+                                                <Frame WidthRequest="343" HeightRequest="56" Padding="10,7,0,7" Margin="0,15,0,0"  BorderColor="Black">
+                                                    <Grid ColumnDefinitions="*,auto">
+                                                        <Entry Placeholder="Picture of Original RC" Text="{Binding OpenMarket.PictureOfOriginalRC}" x:Name="picoforgRc" TextColor="Black" IsEnabled="False" FontSize="16" PlaceholderColor="#3F4948"/>
+                                                        <Button Clicked="OpenbootomPicOfOrigiRC" TextColor="Black" Background="transparent" ImageSource="greenplus.png" Grid.Column="1" HeightRequest="24" WidthRequest="24" Margin="10"/>
+                                                    </Grid>
+                                                </Frame>
+                                                <Frame WidthRequest="343" HeightRequest="56" Padding="10,7,0,7" Margin="0,15,0,0"  BorderColor="Black">
+                                                    <Grid ColumnDefinitions="*,auto">
+                                                        <Entry Placeholder="Odometer Picture" x:Name="odoPic" Text="{Binding OpenMarket.OdometerPicture}" IsEnabled="False" TextColor="Black" FontSize="16" PlaceholderColor="#3F4948"/>
+                                                        <Button Clicked="OpenbootomOdometerPic" TextColor="Black" Background="transparent" ImageSource="greenplus.png" Grid.Column="1" HeightRequest="24" WidthRequest="24" Margin="10"/>
+                                                    </Grid>
+                                                </Frame>
+                                                <Frame WidthRequest="343" HeightRequest="56" Padding="10,7,0,7" Margin="0,15,0,0"  BorderColor="Black">
+                                                    <Grid ColumnDefinitions="*,auto">
+                                                        <Entry Placeholder="Vehicle Picture from Front" Text="{Binding OpenMarket.VehiclePictureFromFront}" x:Name="vehiclepicFront" TextColor="Black" IsEnabled="False" FontSize="16" PlaceholderColor="#3F4948"/>
+                                                        <Button Clicked="OpenbootomVehiclePicFront" TextColor="Black" Background="transparent" ImageSource="greenplus.png" Grid.Column="1" HeightRequest="24" WidthRequest="24" Margin="10"/>
+                                                    </Grid>
+
+                                                </Frame>
+
+
+                                                <Frame WidthRequest="343" HeightRequest="56" Padding="10,7,0,7" Margin="0,15,0,50"  BorderColor="Black">
+                                                    <Grid ColumnDefinitions="*,auto">
+                                                        <Entry Placeholder="Vehicle Picture from Back" x:Name="vehiclepicBack" Text="{Binding OpenMarket.VehiclePictureFromBack}" TextColor="Black" IsEnabled="False" FontSize="16" PlaceholderColor="#3F4948"/>
+
+                                                        <Button Clicked="OpenbootomVehiclePicBack" Background="transparent" ImageSource="greenplus.png" Grid.Column="1" HeightRequest="24" WidthRequest="24" Margin="10"/>
+                                                    </Grid>
+                                                </Frame>
+                                            </VerticalStackLayout>
+                                        </ScrollView>
+                                        <Button Style="{StaticResource LargeButtonColor}" Command="{Binding LoadOpenMarketDetailsCommand}" TextColor="White" Clicked="Button_Clicked" Grid.Row="1" Text="Submit"  Margin="0,0,0,30"/>
+                                    </Grid>
+                                </VerticalStackLayout>
+                            </Grid>
+
+
+                            <!--OpenMarketEnd-->
+
+                            <Grid Margin="10,16,10,0"  x:Name="Section3" WidthRequest="343">
+
+                                <HorizontalStackLayout Spacing="9">
+                                    <Button Text="Aggregator  "  Clicked="Sign_Clicked" WidthRequest="130" HeightRequest="32" Padding="0,0,0,2" FontSize="Small" CornerRadius="12" VerticalOptions="Start"  BackgroundColor="White" TextColor="Black" BorderColor="Black" BorderWidth="1"/>
+
+                                    <Button Text="Open Market" WidthRequest="110" HeightRequest="32"  Clicked="Market_Button_Clicked" Padding="0,0,0,2" FontSize="Small" CornerRadius="12" VerticalOptions="Start"  BackgroundColor="White" TextColor="Black" BorderColor="Black" BorderWidth="1"/>
+                                    <Button Text="New Car Dealer" x:Name="New_CarButton" FontAttributes="Bold"  WidthRequest="110" HeightRequest="32" Padding="0,0,0,2" FontSize="Small"  BackgroundColor="#cce8e5" TextColor="Black" BorderWidth="0" CornerRadius="12" VerticalOptions="Start"/>
+
+                                </HorizontalStackLayout>
+
+                                <VerticalStackLayout Margin="0,60,0,0" Spacing="15">
+                                    <Grid RowDefinitions="*,auto">
+                                        <ScrollView>
+                                            <VerticalStackLayout>
+                                                <Frame WidthRequest="343" HeightRequest="56"   Padding="10,7,0,7" Margin="0,0,0,0"  BorderColor="Black">
+                                                    <Entry Placeholder="Purchase Amount" x:Name="PurchaseAmount" Text="{Binding NewCar.PurchaseAmount}" Keyboard="Numeric" TextColor="Black" FontSize="16" PlaceholderColor="#3F4948"/>
+
+                                                </Frame>
+                                                <Frame WidthRequest="343" HeightRequest="56" Padding="10,7,0,7" Margin="0,15,0,0"  BorderColor="Black">
+                                                    <Entry Placeholder="Vehicle Number" x:Name="VehicleNumber" Text="{Binding NewCar.VehicleNumber}" TextColor="Black" FontSize="16" PlaceholderColor="#3F4948"/>
+
+                                                </Frame>
+
+
+                                                <Frame WidthRequest="343" HeightRequest="56"  Padding="10,7,0,7" Margin="0,15,0,0"  BorderColor="Black">
+                                                    <Grid ColumnDefinitions="*,auto">
+                                                        <Entry Placeholder="Odometer Picture" TextColor="Black" Text="{Binding NewCar.OdometerPicture}" x:Name="NCDOdoPic" IsEnabled="False" FontSize="16" PlaceholderColor="#3F4948"/>
+                                                        <Button Clicked="OpenbootomNCDOdoPic" TextColor="Black" Background="transparent" ImageSource="greenplus.png" Grid.Column="1" HeightRequest="24" WidthRequest="24" Margin="10"/>
+                                                    </Grid>
+
+                                                </Frame>
+                                                <Frame WidthRequest="343" HeightRequest="56" Padding="10,7,0,7" Margin="0,15,0,0"  BorderColor="Black">
+                                                    <Grid ColumnDefinitions="*,auto">
+                                                        <Entry Placeholder="Vehicle Picture from Front" Text="{Binding NewCar.VehiclePicFromFront}" TextColor="Black" x:Name="NCDFrontPic" IsEnabled="False" FontSize="16" PlaceholderColor="#3F4948"/>
+                                                        <Button Clicked="OpenbootomNCDVehicleFrontPic" TextColor="Black" Background="transparent" ImageSource="greenplus.png" Grid.Column="1" HeightRequest="24" WidthRequest="24" Margin="10"/>
+                                                    </Grid>
+                                                </Frame>
+                                                <Frame WidthRequest="343" HeightRequest="56" Padding="10,7,0,7" Margin="0,15,0,0"  BorderColor="Black">
+                                                    <Grid ColumnDefinitions="*,auto">
+                                                        <Entry Placeholder="Vehicle Picture from Back " Text="{Binding NewCar.VehiclePicFromBack}"  TextColor="Black" x:Name="NCDBackPic" IsEnabled="False" FontSize="16" PlaceholderColor="#3F4948"/>
+                                                        <Button Clicked="OpenbootomNCDVehicleBackPic" TextColor="Black" Background="transparent" ImageSource="greenplus.png" Grid.Column="1" HeightRequest="24" WidthRequest="24" Margin="10"/>
+                                                    </Grid>
+                                                </Frame>
+                                                <Frame WidthRequest="343" HeightRequest="56" Padding="10,7,0,7" Margin="0,15,0,0"  BorderColor="Black">
+                                                    <Grid ColumnDefinitions="*,auto">
+                                                        <Entry Placeholder="Invoice" TextColor="Black" x:Name="NCDInvoice" Text="{Binding NewCar.Invoice}" FontSize="16" IsEnabled="False" PlaceholderColor="#3F4948"/>
+                                                        <Button Clicked="OpenbootomNCDInvoicePic" TextColor="Black" Background="transparent" ImageSource="greenplus.png" Grid.Column="1" HeightRequest="24" WidthRequest="24" Margin="10"/>
+                                                    </Grid>
+                                                </Frame>
+                                                <Frame WidthRequest="343" HeightRequest="56" Padding="10,7,0,7" Margin="0,15,0,20"  BorderColor="Black">
+                                                    <Grid ColumnDefinitions="*,auto">
+                                                        <Entry Placeholder="Picture of Original RC " TextColor="Black" Text="{Binding NewCar.PictOfOrginalRC}" x:Name="NCDRcPic" IsEnabled="False" FontSize="16" PlaceholderColor="#3F4948"/>
+                                                        <Button Clicked="OpenbootomNCDPicRcPic" TextColor="Black" Background="transparent" ImageSource="greenplus.png" Grid.Column="1" HeightRequest="24" WidthRequest="24" Margin="10"/>
+                                                    </Grid>
+                                                </Frame>
+
+                                            </VerticalStackLayout>
+                                        </ScrollView>
+                                        <Button Clicked="Button_Clicked_1" Style="{StaticResource LargeButtonColor}" Command="{Binding LoadNewCarDetailCommand}" TextColor="White" Grid.Row="1" Text="Submit"  Margin="0,0,0,30"/>
+                                    </Grid>
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Grid>
+
+
+                        <!--NewCarEnd-->
+
+
+
+
+                    </tabview:SfTabItem.Content>
+
+                </tabview:SfTabItem>
+
+                <tabview:SfTabItem Header="Documents"  FontSize="14" Style="{StaticResource TabItemStyle}">
+                    <tabview:SfTabItem.Content>
+                        <Grid>
+
+                            <Grid Margin="10,16,10,0"  x:Name="SectionC">
+
+                                <HorizontalStackLayout Spacing="9"  Margin="0,0,0,0" >
+                                    <Button Text="Sign Documents" x:Name="SignButton1" Clicked="OnSignButtonClicked" WidthRequest="166" HeightRequest="32" Padding="0,0,0,2" FontSize="Small"  BackgroundColor="#cce8e5" TextColor="Black" BorderWidth="0" CornerRadius="12" VerticalOptions="Start"/>
+                                    <Button Text="Download Documents" Clicked="OnDownloadButtonClicked" WidthRequest="166" HeightRequest="32" Padding="0,0,0,2" FontSize="Small" CornerRadius="12" VerticalOptions="Start"  BackgroundColor="White" TextColor="Black" BorderColor="Black" BorderWidth="1"/>
+
+                                </HorizontalStackLayout>
+
+                                <VerticalStackLayout Margin="0,60,0,0" Spacing="20">
+                                    <Frame WidthRequest="343" HeightRequest="227" HasShadow="True">
+                                        <VerticalStackLayout Spacing="4">
+                                            <Label Text="Car Name Variant" FontAttributes="Bold" FontSize="Small"/>
+                                            <Label Text="Purchase ID:77553775" FontSize="Default"/>
+                                            <Image Source="redcar" WidthRequest="343" HeightRequest="83" Margin="4,10,4,0"/>
+                                            <HorizontalStackLayout Margin="0,10,0,0" Spacing="9">
+                                                <Button ImageSource="downloadicon.png" Text="Dealer Application Form" WidthRequest="225" HeightRequest="32" Padding="0,0,0,2" FontSize="Small" BackgroundColor="White" TextColor="#4AA09B" BorderColor="Black" BorderWidth="0.6" CornerRadius="12" VerticalOptions="Start"/>
+                                                <Button Text="Sign" TextColor="White"  WidthRequest="65" HeightRequest="32" CornerRadius="22" Padding="0,0,0,2" BackgroundColor="#4AA09B"/>
+                                            </HorizontalStackLayout>
+                                        </VerticalStackLayout>
+
+                                    </Frame>
+                                    <Frame WidthRequest="343" HeightRequest="227" HasShadow="True">
+                                        <VerticalStackLayout Spacing="4">
+                                            <Label Text="Car Name Variant" FontAttributes="Bold" FontSize="Small"/>
+                                            <Label Text="Purchase ID:77553775" FontSize="Default"/>
+                                            <Image Source="redcar" WidthRequest="343" HeightRequest="83" Margin="4,10,4,0"/>
+                                            <HorizontalStackLayout Margin="0,10,0,0" Spacing="9">
+                                                <Button ImageSource="downloadicon.png" Text="Distribursment Request" WidthRequest="225" HeightRequest="32" Padding="0,0,0,2" FontSize="Small" BackgroundColor="White" TextColor="#4AA09B" BorderColor="Black" BorderWidth="0.6" CornerRadius="12" VerticalOptions="Start"/>
+                                                <Button Text="Sign" TextColor="White"  WidthRequest="65" HeightRequest="32" CornerRadius="22" Padding="0,0,0,2" BackgroundColor="#4AA09B"/>
+                                            </HorizontalStackLayout>
+                                        </VerticalStackLayout>
+
+                                    </Frame>
+                                </VerticalStackLayout>
+                            </Grid>
+                            <Grid  Margin="10,16,10,0"  x:Name="SectionB">
+
+                                <HorizontalStackLayout Spacing="9" Margin="0,0,0,0">
+                                    <Button Text="Sign Documents"  Clicked="OnSignButtonClicked" WidthRequest="166" HeightRequest="32" Padding="0,0,0,2" FontSize="Small" BackgroundColor="White" TextColor="Black" BorderColor="Black" BorderWidth="1" CornerRadius="12" VerticalOptions="Start"/>
+                                    <Button Text="Download Documents"  x:Name="DownloadButton"  WidthRequest="166" HeightRequest="32" Padding="0,0,0,2" FontSize="Small" BackgroundColor="#cce8e5" TextColor="Black" BorderWidth="0" CornerRadius="12" VerticalOptions="Start"/>
+
+                                </HorizontalStackLayout>
+
+                                <VerticalStackLayout Margin="0,60,0,0" Spacing="20">
+                                    <Frame WidthRequest="343" HeightRequest="227" HasShadow="True">
+                                        <VerticalStackLayout Spacing="4">
+                                            <Label Text="Car Name Variant" FontAttributes="Bold" FontSize="Small"/>
+                                            <Label Text="Purchase ID:77553775" FontSize="Default"/>
+                                            <Image Source="redcar" WidthRequest="343" HeightRequest="83" Margin="4,10,4,0"/>
+                                            <HorizontalStackLayout Margin="0,10,0,0" Spacing="9">
+                                                <Button ImageSource="downloadicon.png" Text="Dealer Application Form" WidthRequest="301" HeightRequest="32" Padding="0,0,0,2" FontSize="Small" BackgroundColor="White" TextColor="#4AA09B" BorderColor="Black" BorderWidth="0.6" CornerRadius="12" VerticalOptions="Start"/>
+                                                <!--<Button Text="Sign" TextColor="White"  WidthRequest="65" HeightRequest="32" CornerRadius="22" Padding="0,0,0,2" BackgroundColor="#4AA09B"/>-->
+                                            </HorizontalStackLayout>
+                                        </VerticalStackLayout>
+
+                                    </Frame>
+                                    <Frame WidthRequest="343" HeightRequest="227" HasShadow="True">
+                                        <VerticalStackLayout Spacing="4">
+                                            <Label Text="Car Name Variant" FontAttributes="Bold" FontSize="Small"/>
+                                            <Label Text="Purchase ID:77553775" FontSize="Default"/>
+                                            <Image Source="redcar" WidthRequest="343" HeightRequest="83" Margin="4,10,4,0"/>
+                                            <HorizontalStackLayout Margin="0,10,0,0" Spacing="9">
+                                                <Button ImageSource="downloadicon.png" Text="Dealer Application Form" WidthRequest="301" HeightRequest="32" Padding="0,0,0,2" FontSize="Small" BackgroundColor="White" TextColor="#4AA09B" BorderColor="Black" BorderWidth="0.6" CornerRadius="12" VerticalOptions="Start"/>
+                                                <!--<Button Text="Sign" TextColor="White"  WidthRequest="65" HeightRequest="32" CornerRadius="22" Padding="0,0,0,2" BackgroundColor="#4AA09B"/>-->
+                                            </HorizontalStackLayout>
+                                        </VerticalStackLayout>
+
+                                    </Frame>
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Grid>
+
+
+                    </tabview:SfTabItem.Content>
+                </tabview:SfTabItem>
+
+                <!--Start Vehicle Records-->
+
+                <tabview:SfTabItem Header="Vehicle Records"  FontSize="14" >
+                    <tabview:SfTabItem.Content>
+                        <Grid >
+                            <Grid x:Name="Section11">
+                                <VerticalStackLayout Spacing="0">
+                                    <CollectionView x:Name="mCollectionView"
+ItemsSource="{Binding VehicleRecords}"
+SelectionMode="None" Margin="0,16,0,0" >
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate  >
+                                                <Frame  BackgroundColor="#F7FAF8" Padding="0" BorderColor="Transparent" WidthRequest="343" HeightRequest="72" Margin="0,0,0,20" HorizontalOptions="Center">
+                                                    <Grid ColumnDefinitions="auto,100*,60*"  Padding="10,0,0,0">
+                                                        <Image Source="car.png"  HorizontalOptions="Center" HeightRequest="56" WidthRequest="56" VerticalOptions="Center"      />
+                                                        <Grid RowDefinitions="auto,auto,auto" Grid.Column="1">
+                                                            <Label Style="{StaticResource LabelPrimaryMedium}" Grid.Row="0" Padding="20,15,0,0">
+                                                                <Label.FormattedText>
+                                                                    <FormattedString>
+                                                                        <Span Text="{Binding CarName }" />
+                                                                        <Span Text=" and " />
+                                                                        <Span Text="{Binding Variant}" />
+                                                                    </FormattedString>
+                                                                </Label.FormattedText>
+                                                            </Label>
+
+
+                                                            <Grid ColumnDefinitions="auto,auto" Grid.Row="1" >
+                                                                <Label FontSize="10" TextColor="Black" Padding="20,10,0,0" Margin="0,0,0,20">
+                                                                    <Label.FormattedText>
+                                                                        <FormattedString>
+                                                                            <Span Text="Purchase Id-" />
+
+                                                                            <Span Text="{Binding PurchaseId}" />
+                                                                        </FormattedString>
+                                                                    </Label.FormattedText>
+                                                                </Label>
+
+                                                                <Label Text="{Binding ActionRequired}" HorizontalOptions="End" FontSize="10" Grid.Column="1"  Padding="20,10,0,0" Margin="45,0,0,25">
+                                                                    <Label.TextColor>
+                                                                        <OnPlatform x:TypeArguments="Color">
+                                                                            <On Platform="Android, iOS" Value="Green" />
+                                                                            <On Platform="MAUI" Value="Green" />
+                                                                        </OnPlatform>
+                                                                    </Label.TextColor>
+                                                                    <Label.Triggers>
+                                                                        <DataTrigger TargetType="Label" Binding="{Binding ActionRequired}" Value="Action Required" >
+                                                                            <Setter Property="TextColor" Value="Red" />
+                                                                        </DataTrigger>
+                                                                    </Label.Triggers>
+                                                                </Label>
+
+                                                            </Grid>
+                                                        </Grid>
+                                                        <Button Grid.Column="2"  Text="View" Command="{Binding  Path= BindingContext.PayCommand,Source={Reference mCollectionView }}" 
+                                                                CommandParameter="{Binding .}" FontSize="10" BackgroundColor="#4AA09B" TextColor="White" CornerRadius="12" 
+                                                                HorizontalOptions="Center" Margin="22,0,20,20" Padding="-30"  VerticalOptions="Center" WidthRequest="44" HeightRequest="18" />
+                                                    </Grid>
+                                                    
+                                                </Frame>
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
+
+
+                                </VerticalStackLayout>
+                            </Grid>
+                            <Grid x:Name="Section22">                                <!-- Frame for vehicle information -->                                <Frame HeightRequest="155" WidthRequest="343" Margin="0,20,0,0" VerticalOptions="Start" HorizontalOptions="Center" HasShadow="True">
+                                    <VerticalStackLayout Spacing="5" HeightRequest="155" WidthRequest="343" Margin="30,20,0,0">
+
+                                        <Label  TextColor="#191C1C" FontSize="16" FontAttributes="Bold">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{Binding CarName }" />
+                                                    <Span Text=" and " />
+                                                    <Span Text="{Binding Variant}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label TextColor="#191C1C" FontSize="14">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Purchase Id-" />
+
+                                                    <Span Text="{Binding PurchaseId}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Image Source="redcar.png" HeightRequest="80"  Margin="0,10,0,0"/>
+                                    </VerticalStackLayout>
+                                </Frame>
+
+                                <!-- Grid for displaying statuses -->
+                                <Grid VerticalOptions="StartAndExpand" Margin="16,200,16,0">
+                                    <VerticalStackLayout Spacing="15" Margin="0,0,0,40">
+                                        <!-- Bind labels and images to view model properties -->
+                                        <Grid ColumnDefinitions="auto,*" BackgroundColor="#f7faf8" HeightRequest="48">
+                                            <Label Text="Challan" TextColor="#BA1A1A" WidthRequest="257" FontSize="16" Margin="15,10,0,10" FontAttributes="Bold" />
+                                            <Image Grid.Column="1" Source="{Binding ChallanStatusIcon}" WidthRequest="56" HeightRequest="24" />
+                                        </Grid>
+                                        <Grid ColumnDefinitions="auto,*" BackgroundColor="#f7faf8" HeightRequest="48">
+                                            <Label Text="RSStatus" TextColor="#191C1C" WidthRequest="257" FontSize="16" Margin="15,10,0,10" FontAttributes="Bold" />
+                                            <Image Grid.Column="1" Source="{Binding RSStatusIcon}" WidthRequest="56" HeightRequest="24" />
+                                        </Grid>
+                                        <Grid ColumnDefinitions="auto,*" BackgroundColor="#f7faf8" HeightRequest="48">
+                                            <Label Text="Fitness" TextColor="#191C1C" WidthRequest="257" FontSize="16" Margin="15,10,0,10" FontAttributes="Bold" />
+                                            <Image Grid.Column="1" Source="{Binding FitnessStatusIcon}" WidthRequest="56" HeightRequest="24" />
+                                        </Grid>
+                                        <Grid ColumnDefinitions="auto,*" BackgroundColor="#f7faf8" HeightRequest="48">
+                                            <Label Text="OwnerName" TextColor="#191C1C" WidthRequest="257" FontSize="16" Margin="15,10,0,10" FontAttributes="Bold" />
+                                            <Image Grid.Column="1" Source="{Binding OwnerNameStatusIcon}" WidthRequest="56" HeightRequest="24" />
+                                        </Grid>
+                                        <Grid ColumnDefinitions="auto,*" BackgroundColor="#f7faf8" HeightRequest="48">
+                                            <Label Text="Hypothecation" TextColor="#191C1C" WidthRequest="257" FontSize="16" Margin="15,10,0,10" FontAttributes="Bold" />
+                                            <Image Grid.Column="1" Source="{Binding HypothecationStatusIcon}" WidthRequest="56" HeightRequest="24" />
+                                        </Grid>
+                                        <Grid ColumnDefinitions="auto,*" BackgroundColor="#f7faf8" HeightRequest="48">
+                                            <Label Text="BlackList" TextColor="#191C1C" WidthRequest="257" FontSize="16" Margin="15,10,0,10" FontAttributes="Bold" />
+                                            <Image Grid.Column="1" Source="{Binding BlackListStatusIcon}" WidthRequest="56" HeightRequest="24" />
+                                        </Grid>
+                                    </VerticalStackLayout>
+
+
+                                    <!-- Display the list of properties with false values in a ListView -->
+
+
+
+
+                                    <StackLayout  Orientation="Horizontal" Margin="40,400,0,0" 
+                                                IsVisible="{Binding HasFalseProperties}">
+                                        <Label Text="Action Required: Pay " FontSize="16" TextColor="Red" FontAttributes="Bold"/>
+                                        <ListView ItemsSource="{Binding FalseProperties}" SeparatorVisibility="None">
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <ViewCell>
+                                                        <StackLayout Orientation="Horizontal">
+                                                            <Label Text="{Binding}" TextColor="Red" FontSize="16" FontAttributes="Bold"/>
+                                                        </StackLayout>
+                                                    </ViewCell>
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
+                                    </StackLayout>
+
+
+
+                                </Grid>
+
+
+                            </Grid>
+
+                        </Grid>
+
+                    </tabview:SfTabItem.Content>
+                </tabview:SfTabItem>
+
+            </tabview:SfTabView.Items>
+        </tabview:SfTabView>
+    </ScrollView>
+</ContentPage>

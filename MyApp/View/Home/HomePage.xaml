@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyApp.View.Home.HomePage"
+                         xmlns:model="clr-namespace:MyApp.Model"
+xmlns:viewmodel="clr-namespace:MyApp.ViewModel"
+             Title="My Orders"  x:DataType="viewmodel:PaymentViewModel" BackgroundColor="White" Shell.TabBarIsVisible="True" >
+    <ContentPage.ToolbarItems>
+        <!-- Define a custom toolbar item with the "+" icon -->
+        <ToolbarItem
+  IconImageSource="notifications_none.png"
+  Priority="0"
+  Order="Primary" 
+     Clicked="ToolbarItem_Clicked"
+  />
+    </ContentPage.ToolbarItems>
+    <ScrollView>
+
+        <VerticalStackLayout>
+            <Label  Margin="10,16,0,0"
+           Text="{Binding UserName, StringFormat='Hi {0}'}"
+            FontSize="16"
+            FontAttributes="Bold"
+            VerticalOptions="Center" 
+            HorizontalOptions="Start"  TextColor="#191C1C"/>
+
+            <Frame WidthRequest="343" HeightRequest="82" HasShadow="True" Margin="0,16,0,0" Padding="0">
+                <VerticalStackLayout>
+                    <Label Text="Limit Available: ₹2,00,000 " FontSize="14" TextColor="#4AA09B" Margin="16,16,0,10"/>
+                    <ProgressBar ProgressColor="#4AA09B" Progress="0.5" BackgroundColor="#E0E3E2" HeightRequest="4"  WidthRequest="311"/>
+                    <Grid ColumnDefinitions="50*,50*">
+                        <Label Text="Used: ₹20,000" FontSize="10" TextColor="#6F7978" Margin="16,5,0,0"/>
+                        <Label Text="Total: ₹20,00,000" FontSize="10" Grid.Column="1" HorizontalOptions="End"  TextColor="#6F7978" Margin="0,5,16,0"/>
+                    </Grid>
+
+                </VerticalStackLayout>
+
+
+            </Frame>
+            <Grid ColumnDefinitions="auto,auto,auto" Margin="25">
+                <VerticalStackLayout Margin="0,0,40,0">
+                    <Button ImageSource="payments.png" WidthRequest="56" CornerRadius="12" HeightRequest="56" Background="#ecf8f2" Command="{Binding PaymentPageCommand}"></Button>
+                    <Label Text="Payments" TextColor="#002220" FontSize="12" Margin="0,5,0,0" FontAttributes="Bold"/>
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Column="1" Margin="0,0,40,0" >
+                    <Button ImageSource="directions_car_filled.png"
+WidthRequest="56" CornerRadius="12" HeightRequest="56" Background="#ecf8f2" Command="{Binding ProcurementDetailCommand}"></Button>
+                    <Label Text="Procurement Details" TextColor="#002220" FontSize="12" Margin="0,5,0,0" FontAttributes="Bold"/>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Column="2">
+                    <Button ImageSource="library_books.png" WidthRequest="56" CornerRadius="12" HeightRequest="56" Background="#ecf8f2"  Command="{Binding StockAuditCommand}" ></Button>
+                    <Label Text="Stock Audit" FontSize="12" TextColor="#002220" Margin="0,5,0,0" FontAttributes="Bold"/>
+                </VerticalStackLayout>
+            </Grid>
+            <Frame Padding="0" WidthRequest="343" HeightRequest="118" BackgroundColor="#017470" Margin="0,0,0,8">
+                <Grid ColumnDefinitions="60*,40*">
+                    <VerticalStackLayout Margin="16,10,0,16">
+                        <Label Text="Purchase Vehicle" FontSize="16" TextColor="White"/>
+                        <Label Text="Explore our platform for a" FontSize="12" TextColor="White"/>
+                        <Label Text="seamless car-buying experience" FontSize="12" TextColor="White"/>
+                        <Button Text="Purchase Now" TextColor="#FFB54A" FontSize="14" BackgroundColor="#017470" HorizontalOptions="Start" Margin="-13,0,0,0"/>
+                    </VerticalStackLayout>
+                    <Image Source="home_banner.png" WidthRequest="154" HeightRequest="154" Grid.Column="1" Margin="0,0,16,0"/>
+                </Grid>
+
+            </Frame>
+
+            <Frame Padding="16" WidthRequest="343" HeightRequest="320" Margin="0,16,0,0" HasShadow="True" CornerRadius="8"  IsVisible="{Binding IsFrameVisible}" >
+                <Grid>
+                    <Grid RowDefinitions="auto" ColumnDefinitions="50*,50*">
+                        <Label Text="Upcoming Payments" TextColor="#191C1C" FontSize="16" FontAttributes="Bold"/>
+                        <Button ImageSource="arrow_right.png" Grid.Column="1" WidthRequest="24" HorizontalOptions="End" HeightRequest="24" Background="white"/>
+                    </Grid>
+                    <Grid>
+                        <ScrollView Margin="0,40,0,0" VerticalScrollBarVisibility="Never">
+                            <CollectionView
+ItemsSource="{Binding UpcomingPayment}"
+SelectionMode="None" Margin="0,0,0,0" x:Name="mCollectionView" >
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate x:DataType="model:PaymentDetailDto">
+                                        <Frame Padding="0" BorderColor="Transparent" Margin="0,0,0,16" HorizontalOptions="Center"    >
+                                            <Grid ColumnDefinitions="auto,auto,auto"  Padding="20,0,0,0">
+                                                <Image Source="car.png"  HorizontalOptions="Center" HeightRequest="56" WidthRequest="56" VerticalOptions="Center"      />
+                                                <Grid RowDefinitions="auto,auto,auto" Grid.Column="1">
+                                                    <Label Style="{StaticResource LabelPrimaryMedium}" Grid.Row="0" Padding="20,10,0,0">
+                                                        <Label.FormattedText>
+                                                            <FormattedString>
+                                                                <Span Text="{Binding CarName }" />
+                                                                <Span Text=" and " />
+                                                                <Span Text="{Binding Variant}" />
+                                                            </FormattedString>
+                                                        </Label.FormattedText>
+                                                    </Label>
+
+                                                    <Label Text="{Binding Amount_Due, StringFormat='Amount Due: ₹{0:F0}'}" FontSize="14" TextColor="#4AA09B"  Grid.Row="1" Padding="20,0,0,0" />
+                                                    <Label Text="{Binding CarId, StringFormat='Purchase Id- {0}'}" FontSize="10" TextColor="Black"  Grid.Row="2" Padding="20,0,0,0" Margin="0,0,0,10"/>
+                                                </Grid>
+                                                <Button Grid.Column="2"  Text="Pay" Command="{Binding  Path= BindingContext.PayyCommand,Source={Reference mCollectionView }}"  CommandParameter="{Binding .}" FontSize="10" BackgroundColor="#4AA09B" TextColor="White" CornerRadius="12" HorizontalOptions="Center" Margin="18,0,20,0" Padding="-30"  VerticalOptions="Center" WidthRequest="59" HeightRequest="24" />
+
+
+                                            </Grid>
+                                        </Frame>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </ScrollView>
+
+                    </Grid>
+                </Grid>
+            </Frame>
+            <Frame Padding="16" WidthRequest="343" HeightRequest="304" Margin="0,16,0,16" HasShadow="True"  CornerRadius="8" IsVisible="{Binding IsFrameVisible}">
+
+                <Grid>
+
+                    <Grid RowDefinitions="auto" ColumnDefinitions="50*,50*">
+
+                        <Label Text="Upcoming Audits" TextColor="#191C1C" FontSize="16" FontAttributes="Bold"/>
+
+                        <Button ImageSource="arrow_right.png" Grid.Column="1" WidthRequest="24" HorizontalOptions="End" HeightRequest="24" Background="white"/>
+
+                    </Grid>
+
+                    <Grid>
+
+                        <ScrollView Margin="0,40,0,0" VerticalScrollBarVisibility="Never">
+
+                            <CollectionView
+
+ItemsSource="{Binding UpcomingAudit}"
+
+SelectionMode="None" Margin="0,0,0,0">
+
+                                <CollectionView.ItemTemplate>
+
+                                    <DataTemplate x:DataType="model:UpcomingAuditModel">
+
+                                        <Frame Style="{StaticResource PaymentFrame}" BackgroundColor="Transparent" HorizontalOptions="Center"    >
+
+                                            <Grid ColumnDefinitions="auto,auto,auto"  Padding="20,0,0,0">
+
+                                                <Image Source="car.png"  HorizontalOptions="Center" HeightRequest="56" WidthRequest="56" VerticalOptions="Center"      />
+
+                                                <Grid RowDefinitions="auto,auto,auto" Grid.Column="1">
+
+                                                    <Label Style="{StaticResource LabelPrimaryMedium}" Grid.Row="0" Padding="20,10,0,0">
+
+                                                        <Label.FormattedText>
+
+                                                            <FormattedString>
+
+                                                                <Span Text="{Binding CarName }" />
+
+                                                                <Span Text=" and " />
+
+                                                                <Span Text="{Binding Variant}" />
+
+                                                            </FormattedString>
+
+                                                        </Label.FormattedText>
+
+                                                    </Label>
+
+                                                    <Label Text="{Binding CarId, StringFormat='Purchase Id- {0}'}" FontSize="10" TextColor="Black"  Grid.Row="1" Padding="20,0,0,0" />
+
+                                                    <Label Text="{Binding DaysLeftToVerify }" FontSize="12" TextColor="#4AA09B"  Grid.Row="2" Padding="20,0,0,0" Margin="0,0,0,10" />
+
+                                                </Grid>
+
+
+                                            </Grid>
+
+                                        </Frame>
+
+                                    </DataTemplate>
+
+                                </CollectionView.ItemTemplate>
+
+                            </CollectionView>
+
+                        </ScrollView>
+
+                    </Grid>
+
+
+                </Grid>
+            </Frame>
+            <Frame Background="#59DBD4" WidthRequest="343" Padding="0" HeightRequest="148" CornerRadius="8" Margin="0,7,0,40" BorderColor="Transparent">
+                <Grid ColumnDefinitions="50*,50*">
+                    <VerticalStackLayout>
+                        <Label Text="Refer a Consumer" TextColor="#191C1C" FontSize="16" FontAttributes="Bold" Margin="16,16,0,0"/>
+                        <Label Text="Click here to refer your" TextColor="#3F4948" FontSize="12" FontAttributes="Bold" Margin="16,0,0,0"/>
+                        <Label Text="customers. We will help" TextColor="#3F4948" FontSize="12" FontAttributes="Bold" Margin="16,0,0,0"/>
+                        <Label Text="them in Procuring Vehicle" TextColor="#3F4948" FontSize="12" FontAttributes="Bold" Margin="16,0,0,12"/>
+                        <Frame WidthRequest="103" HeightRequest="32" Margin="20,0,0,0" CornerRadius="100" Padding="0" HasShadow="true"  HorizontalOptions="Start" VerticalOptions="End" >
+                            <Button Text="Refer Now" FontSize="14" Background="#F2F4F3" CornerRadius="100" TextColor="#4AA09B" Padding="0" WidthRequest="103" HeightRequest="32"/>
+                        </Frame>
+                    </VerticalStackLayout>
+                    <Image Source="banner_back.png" Grid.Column="1" WidthRequest="187.25" HeightRequest="135.96" Margin="0,10,0,0"/>
+                    <Image Source="banner_front.png" Grid.Column="1" WidthRequest="187.25" HeightRequest="135.96" Margin="0,20,15,0"/>
+                </Grid>
+            </Frame>
+            <Image Source="nxfin_logo.png" WidthRequest="95" HeightRequest="30" VerticalOptions="Center" HorizontalOptions="Start" Margin="10,0,0,10"/>
+            <Label HorizontalOptions="Center" TextColor="#3F4948" VerticalOptions="Center" Text="Nxfin is a pioneering venture that specializes in helping used car dealers acquire pre-owned vehicles. We exclusively collaborate with dealers, offering extended payment options and revolutionizing their inventory procurement process with innovation and quality enhancement in mind." FontSize="15" WidthRequest="343" HeightRequest="160"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+
+</ContentPage>

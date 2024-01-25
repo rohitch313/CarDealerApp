@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyApp.ImageVerificationPopup"
+             xmlns:toolkit ="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+           Color="Transparent"  >
+    <Frame CornerRadius="12">
+        <VerticalStackLayout>
+            <Image Source="object.png" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="107" HeightRequest="162"/>
+            <Label 
+            Text="Picture Sent for Verification"
+            VerticalOptions="Center" FontSize="16" 
+            HorizontalOptions="Center" FontAttributes="Bold" Margin="0,12,0,0" />
+            <Label TextColor="#191C1C" Text="Thank you for submitting your picture for " FontSize="14" Margin="0,5,0,0" HorizontalOptions="Center" VerticalOptions="Center"/>
+            <Label TextColor="#3F4948" Text="verification. Your audit will be completed once " FontSize="14" HorizontalOptions="Center" VerticalOptions="Center"/>
+            <Label TextColor="#3F4948" Text="the verification process is successfully " FontSize="14" HorizontalOptions="Center" VerticalOptions="Center"/>
+            <Label TextColor="#3F4948" Text="concluded. We appreciate your patience!" FontSize="14" HorizontalOptions="Center" VerticalOptions="Center"/>
+           
+        </VerticalStackLayout>
+    </Frame>
+</toolkit:Popup>

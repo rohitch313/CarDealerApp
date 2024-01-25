@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyApp.View.Login.RejectedPage"
+             Shell.TabBarIsVisible="False" BackgroundColor="White">
+    <Shell.TitleView>
+        <StackLayout Orientation="Horizontal">
+            <!-- Add your logo here -->
+            <Image Source="logo_1.png"/>
+        </StackLayout>
+    </Shell.TitleView>
+
+    <Grid Margin="0,70,0,0" >
+        <Grid Margin="0,0,0,0" HorizontalOptions="Center">
+            <Image Source="Rejected.png" WidthRequest="300"  VerticalOptions="Start"/>
+        </Grid>
+        <Grid VerticalOptions="Center"  Margin="0,80,0,0" HorizontalOptions="Center" >
+            <Label  Text="Application Rejected" Margin="0,0,0,0" FontAttributes="Bold" FontSize="16"  HorizontalOptions="Center" />
+            <Label  TextColor="#3F4948" Text="We regret to inform you that your application has"  Margin="0,30,0,0"  FontSize="14"/>
+            <Label  TextColor="#3F4948" Text="     been rejected as you are not eligible. You can"  Margin="0,50,0,0"  FontSize="14" />
+            <Label  TextColor="#3F4948" Text="reapply in 3 months.Thank you for considering us." Margin="0,70,0,0"  FontSize="14"  />
+
+        </Grid>
+    </Grid>
+</ContentPage>

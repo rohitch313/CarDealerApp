@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="MyApp.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:MyApp.View.PurchaseVehicle"
+      xmlns:local2="clr-namespace:MyApp.View.Account"
+    xmlns:local3="clr-namespace:MyApp.View.Home"
+    xmlns:local4="clr-namespace:MyApp.View.Login"
+    Shell.FlyoutBehavior="Disabled"  Shell.BackgroundColor="#ecf8f2"   Shell.ForegroundColor="black" Shell.TitleColor="Black"  Shell.TabBarBackgroundColor="#ECEEED">
+
+    <!--<Shell.ToolbarItems>
+        <ToolbarItem
+            IconImageSource="notifications_none.png"
+            Priority="1"
+            Order="Primary"
+            Command="{Binding YourCommand}" Clicked="ToolbarItem_Clicked" />
+    </Shell.ToolbarItems>-->
+
+
+    <TabBar x:Name="MyTabBar" Shell.TabBarBackgroundColor="#ECEEED"    Shell.TabBarForegroundColor="Black" >
+        <Tab Title="Orders" Icon="shopping_bag.png"     >            <ShellContent ContentTemplate="{DataTemplate local3:HomePage}" Route="HomePage" />        </Tab>        <Tab Title="Purchase Vehicle" Icon="plus.png"  IsVisible="True">            <ShellContent ContentTemplate="{DataTemplate local:PurchaseVehicleView}" Route="PurchasedVehicleView" />        </Tab>        <Tab Title="My Account" Icon="new_profile.png" IsVisible="True" >            <ShellContent ContentTemplate="{DataTemplate local2:ProfileInfo}" Route="ProfileInformationPage"/>        </Tab>    </TabBar>
+    <ShellContent ContentTemplate="{DataTemplate local4:LoginPage}" Route="LoginPage" />
+</Shell>

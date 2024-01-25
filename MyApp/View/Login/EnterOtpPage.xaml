@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyApp.View.Login.EnterOtpPage"   xmlns:viewmodel="clr-namespace:MyApp.ViewModel"
+ x:DataType="viewmodel:PostLoginViewModel" Shell.TabBarIsVisible="False" BackgroundColor="White">
+
+    <Shell.TitleView>
+        <StackLayout Orientation="Horizontal">
+            <!-- Add your logo here -->
+            <Image Source="logo_1.png"/>
+        </StackLayout>
+    </Shell.TitleView>
+
+
+    <Grid RowDefinitions="auto , auto,*" Margin="25,15,0,0">
+        <Grid Grid.Row="0">
+            <Label Text="Verify" FontSize="17" TextColor="#191C1C"  FontAttributes="Bold" HorizontalOptions="Start" VerticalOptions="Start"/>
+            <Label Text="{Binding MaskedPhoneNumber, StringFormat='Enter one time password sent to {0}' }" TextColor="#3F4948" Margin="0,34,0,0" FontFamily=""  FontSize="15" HorizontalOptions="Start" VerticalOptions="Start"/>
+        </Grid>
+        <Grid Grid.Row="1"  Margin="0,10,0,0" ColumnDefinitions="auto,auto">
+            <StackLayout Grid.Column="0" Orientation="Horizontal" HorizontalOptions="Start" Spacing="15" >
+                <Frame  Style="{StaticResource SmallFrameBox}">
+                    <Entry x:Name="Digit1Entry" TextColor="Black"  Text="{Binding OTPDigit1, Mode=TwoWay}" FontSize="18" MaxLength="1" Keyboard="Numeric" WidthRequest="15"  TextChanged="OnDigitEntryTextChanged"/>
+                </Frame>
+                <Frame  Style="{StaticResource SmallFrameBox}">
+                    <Entry x:Name="Digit2Entry" TextColor="Black"  Text="{Binding OTPDigit2, Mode=TwoWay}" FontSize="18"  MaxLength="1" Keyboard="Numeric" WidthRequest="15" TextChanged="OnDigitEntryTextChanged"/>
+                </Frame>
+                <Frame   Style="{StaticResource SmallFrameBox}">
+                    <Entry x:Name="Digit3Entry" TextColor="Black" Text="{Binding OTPDigit3, Mode=TwoWay}" FontSize="18" MaxLength="1" Keyboard="Numeric" WidthRequest="15" TextChanged="OnDigitEntryTextChanged"/>
+                </Frame>
+                <Frame   Style="{StaticResource SmallFrameBox}">
+                    <Entry x:Name="Digit4Entry" TextColor="Black" Text="{Binding OTPDigit4, Mode=TwoWay}"   FontSize="18" MaxLength="1" Keyboard="Numeric" WidthRequest="15" TextChanged="OnDigitEntryTextChanged"/>
+                </Frame>
+            </StackLayout>
+            <Grid  Grid.Column="0" Margin="0,90,0,0" >
+                <Label Text="Didn’t receive a code" TextColor="#3F4948" />
+                <Label Text="Resend code"  TextColor="{Binding ResendTextColor}"
+        IsEnabled="{Binding IsResendEnabled}" HorizontalOptions="Center" Padding="140,0,0,0" >
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ResendOtpCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="2" Margin="0,0,25,10">
+            <!-- CheckBox with Label -->
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="End" Margin="-10,0,0,45">
+                <CheckBox IsChecked="False" Color="#3F4948" />
+                <Label Text="Remember Me" TextColor="#191C1C" FontSize="16" VerticalOptions="Center" />
+            </StackLayout>
+
+            <!-- Button at the bottom -->
+            <Button Text="Submit" Margin="0,0,0,0" Style="{StaticResource LargeButtonColor}" Padding="0,0,0,2" Command="{Binding VerifyCommand}" HorizontalOptions="CenterAndExpand" VerticalOptions="End"/>
+        </Grid>
+
+    </Grid>
+</ContentPage>

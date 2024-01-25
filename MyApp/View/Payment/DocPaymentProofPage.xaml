@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyApp.DocPaymentProofPage"
+             Title="Payment" Shell.TabBarIsVisible="False"
+             xmlns:local="clr-namespace:MyApp.ViewModel" x:DataType="local:PaymentViewModel" BackgroundColor="White">
+    <ContentPage.ToolbarItems>
+        <!-- Define a custom toolbar item with the "+" icon -->
+        <ToolbarItem
+      IconImageSource="notifications_none.png"
+      Priority="0"
+      Order="Primary"
+         Command="{Binding NavigateToNotificationPageCommand}"
+      />
+    </ContentPage.ToolbarItems>
+
+    
+        <Shell.BackButtonBehavior>
+        <BackButtonBehavior Command="{Binding Back11Command}"
+                   IsEnabled="False"  />
+    </Shell.BackButtonBehavior>
+
+
+
+    <Grid RowDefinitions="*,auto">
+        <VerticalStackLayout Grid.Row="0" Margin="16">
+            <Label 
+            Text="Upload Payment Proof" 
+            FontSize="16" 
+            FontAttributes="Bold" TextColor="#191C1C"/>
+            <Label 
+            Text="Please upload payment proof for any external transactions." 
+            FontSize="14" 
+            Margin="0,0,0,0" TextColor="#3F4948"/>
+            <Grid>
+                <ImageButton Margin="0,16,0,0"
+                 x:Name="capturedImage"
+                 Style="{StaticResource ImageButton1}"
+                 SemanticProperties.Hint="Counts the number of times you click"
+              Clicked="capturedImage_Clicked"
+                 HorizontalOptions="Start"
+                 BorderColor="Gray"
+                 BorderWidth="3"/>
+
+                <Entry Margin="0,80,0,0" Text="{Binding ProofImage.PaymentProofImg}"  x:Name="ImagebtnName" IsVisible="false"/>
+                <Label x:Name="plusicon" Text="+" FontSize="Large" FontAttributes="Bold" TextColor="#4AA09B" Padding="40,49,0,0" VerticalOptions="Start" HorizontalOptions="Start" />
+            </Grid>
+
+
+        </VerticalStackLayout>
+        <Button Text="Submit" BackgroundColor="#4AA09B" TextColor="White" CornerRadius="22" HorizontalOptions="Center" WidthRequest="343" HeightRequest="40" Grid.Row="1" Margin="0,0,0,10" Command="{Binding UploadImageForPaymentCommand}"/>
+
+    </Grid>
+</ContentPage>

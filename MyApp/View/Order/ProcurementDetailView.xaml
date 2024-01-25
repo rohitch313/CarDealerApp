@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyApp.ProcurementDetailView"
+                        xmlns:tabview="clr-namespace:Syncfusion.Maui.TabView;assembly=Syncfusion.Maui.TabView"
+             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+xmlns:model="clr-namespace:MyApp.Model"
+             Shell.TabBarIsVisible="False"
+       
+ xmlns:viewmodel="clr-namespace:MyApp.ViewModel"
+             Title="Procurement Detail" x:DataType="viewmodel:ProcurementViewModel" BackgroundColor="White">
+    <ContentPage.Resources>
+        <Style TargetType="tabview:SfTabItem" x:Key="TabItemStyle">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup>
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="TextColor" Value="#4AA09B" />
+
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="TextColor" Value="Black" />
+
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <!-- Define a custom toolbar item with the "+" icon -->
+        <ToolbarItem
+      IconImageSource="notifications_none.png"
+      Priority="0"
+      Order="Primary"
+         Clicked="ToolbarItem_Clicked"
+      />
+    </ContentPage.ToolbarItems>
+
+
+    <tabview:SfTabView x:Name="tabView"  IndicatorBackground="#4AA09B"  
+                   >
+        <tabview:SfTabView.Items >
+
+
+            <tabview:SfTabItem Header="Open"  FontSize="16" Style="{StaticResource TabItemStyle}" >
+                <tabview:SfTabItem.Content>
+                    <Grid RowDefinitions="auto,*">
+                        <Picker x:Name="myPicker" BackgroundColor="White" Grid.Row="0" Opacity="0" TextColor="Black" ItemsSource="{Binding Filters}" SelectedItem="{Binding SelectedFilter}"  ZIndex="1" VerticalOptions="Center" WidthRequest="48" HeightRequest="40" HorizontalOptions="End" Margin="0,25,7,0">
+                            <Picker.ItemDisplayBinding>
+                                <Binding Path="Name" />
+                                <!-- Replace 'FilterName' with your actual property name to display -->
+                            </Picker.ItemDisplayBinding>
+                        </Picker>
+                        <ImageButton Source="pickericon" HorizontalOptions="End" VerticalOptions="Center" WidthRequest="48" HeightRequest="40" Margin="0,-10,15,0"/>
+                        <Frame Background="#CCE8E5" x:Name="aggregatorFrame" IsVisible="{Binding IsAggregatorVisible}" HorizontalOptions="Start" HeightRequest="32" WidthRequest="116" Grid.Column="0" Margin="20,0,0,0" BorderColor="Transparent"  Padding="0,5,0,0">
+                            <HorizontalStackLayout>
+                                <Label Text="Aggregator" HorizontalOptions="Start" FontSize="14" FontAttributes="Bold" Margin="10,0,0,0"   />
+                                <ImageButton Source="cancelbtn.png" Command="{Binding HideAggregatorFrameCommand}"
+             CommandParameter="Aggregator" HeightRequest="18" WidthRequest="18" Margin="10,0,0,7"/>
+                            </HorizontalStackLayout>
+                        </Frame>
+                        <Frame Background="#CCE8E5" x:Name="newCarDealerFrame" IsVisible="{Binding IsNewCarDealerVisible}" HorizontalOptions="Start" HeightRequest="32" WidthRequest="145" Grid.Column="0" Margin="20,0,0,0" BorderColor="Transparent"  Padding="0,5,0,0">
+                            <HorizontalStackLayout>
+                                <Label Text="New Car Dealer" HorizontalOptions="Start" FontSize="14" FontAttributes="Bold" Margin="10,0,0,0"   />
+                                <ImageButton Source="cancelbtn.png" Command="{Binding HideNewCarDealerFrameCommand}"
+             CommandParameter="New Car Dealer" HeightRequest="18" WidthRequest="18" Margin="10,0,0,7" />
+                            </HorizontalStackLayout>
+                        </Frame>
+                        <Frame Background="#CCE8E5" x:Name="openMarketFrame"  IsVisible="{Binding IsOpenMarketVisible}" HorizontalOptions="Start" HeightRequest="32" WidthRequest="130" Grid.Column="0" Margin="20,0,0,0" BorderColor="Transparent"  Padding="0,5,0,0">
+                            <HorizontalStackLayout>
+                                <Label Text="Open Market" HorizontalOptions="Start" FontSize="14" FontAttributes="Bold" Margin="10,0,0,0"   />
+                                <ImageButton Source="cancelbtn.png" Command="{Binding HideOpenMarketFrameCommand}"
+             CommandParameter="Open Market" HeightRequest="18" WidthRequest="18" Margin="10,0,0,7" />
+                            </HorizontalStackLayout>
+                        </Frame>
+                        <ScrollView Grid.Row="1">
+
+                            <ScrollView>
+
+                                <CollectionView  ItemsSource="{Binding Procurements}"
+SelectionMode="None" Grid.Row="0" Margin="0,16,0,0">
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate x:DataType="model:ProcurementDetialModel">
+
+                                            <Frame WidthRequest="343" HeightRequest="190" Padding="15" VerticalOptions="Start" HasShadow="True" BackgroundColor="#F2F4F3" Margin="0,20,0,0">
+                                                <Grid RowDefinitions="auto,auto,*">
+                                                    <Grid Grid.Row="0" ColumnDefinitions="60*,40*">
+                                                        <VerticalStackLayout Grid.Column="0" Margin="0,10,0,0">
+                                                            <Label>
+                                                                <Label.FormattedText>
+                                                                    <FormattedString>
+                                                                        <Span Text="{Binding CarName}" FontAttributes="Bold" TextColor="#191C1C" FontSize="16" />
+                                                                        <Span Text=" &amp; " FontAttributes="Bold" TextColor="#191C1C" FontSize="16"/>
+                                                                        <Span Text="{Binding Variant}" FontAttributes="Bold" TextColor="#191C1C" FontSize="16" />
+                                                                    </FormattedString>
+                                                                </Label.FormattedText>
+                                                            </Label>
+
+
+                                                            <Label Text="{Binding PurchaseId, StringFormat='Purchase Id- {0}'}" TextColor="#191C1C" FontSize="14"/>
+                                                        </VerticalStackLayout>
+                                                        <Image Source="bigcar.png" Grid.Column="1"  WidthRequest="144" HeightRequest="72" />
+                                                    </Grid>
+                                                    <Grid Grid.Row="1" ColumnDefinitions="50*,50*,50*">
+                                                        <VerticalStackLayout >
+                                                            <Label Text="Amount Paid" FontSize="12" TextColor="#6F7978" Grid.Column="0" />
+                                                            <Label Text="{Binding Amount_paid, StringFormat='₹{0:F0}'}" FontSize="12" TextColor="#3F4948" FontAttributes="Bold" Grid.Column="0" />
+                                                        </VerticalStackLayout>
+                                                        <VerticalStackLayout  Grid.Column="1">
+                                                            <Label Text="Due Amount" FontSize="12" TextColor="#6F7978" Grid.Column="0" />
+                                                            <Label Text="{Binding Amount_due,StringFormat='₹{0:F0}' }" FontSize="12" TextColor="#3F4948" FontAttributes="Bold" Grid.Column="0" />
+                                                        </VerticalStackLayout>
+                                                        <VerticalStackLayout  Grid.Column="2">
+                                                            <Label Text="Facility Availed" FontSize="12" TextColor="#6F7978" Grid.Column="0" />
+                                                            <Label Text="{Binding Facility_Availed, StringFormat='₹{0:F0}'}" FontSize="12" TextColor="#3F4948" FontAttributes="Bold" Grid.Column="0" />
+                                                        </VerticalStackLayout>
+
+
+                                                    </Grid>
+                                                    <Grid Grid.Row="2">
+                                                        <Button BackgroundColor="#4AA09B" TextColor="White" Text="Pay" HeightRequest="40" CornerRadius="100" VerticalOptions="Center" Margin="0,10,0,0"/>
+
+                                                    </Grid>
+                                                </Grid>
+                                            </Frame>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                    <CollectionView.EmptyView>
+                                        <ContentView>
+                                            <StackLayout HorizontalOptions="CenterAndExpand"
+  VerticalOptions="CenterAndExpand">
+                                                <Label Text="No Record found."
+Margin="10,25,10,10"
+FontAttributes="Bold"
+FontSize="18"
+HorizontalOptions="Fill"
+HorizontalTextAlignment="Center" />
+                                            </StackLayout>
+                                        </ContentView>
+                                    </CollectionView.EmptyView>
+                                </CollectionView>
+                            </ScrollView>
+
+                        </ScrollView>
+                    </Grid>
+
+                    <!--<Frame WidthRequest="343" HeightRequest="236" Padding="15" VerticalOptions="Start" HasShadow="True" BackgroundColor="#F2F4F3" Margin="0,20,0,0">
+                            <Grid RowDefinitions="auto,auto,auto,*">
+                                <Grid Grid.Row="0" ColumnDefinitions="60*,40*">
+                                    <VerticalStackLayout Grid.Column="0" Margin="0,10,0,0">
+                                        <Label Text="Car Name &amp; Variant" FontSize="16" TextColor="#191C1C" FontAttributes="Bold" Margin="0,0,0,5"/>
+
+                                        <Label Text="Purchase ID- 77553775" TextColor="#191C1C" FontSize="14"/>
+                                    </VerticalStackLayout>
+                                    <Image Source="bigcar.png" Grid.Column="1"  WidthRequest="144" HeightRequest="72" />
+                                </Grid>
+                                <Grid Grid.Row="1" ColumnDefinitions="50*,50*,50*">
+                                    <VerticalStackLayout >
+                                        <Label Text="Amount Paid" FontSize="12" TextColor="#6F7978" Grid.Column="0" />
+                                        <Label Text="₹85,000" FontSize="12" TextColor="#3F4948" FontAttributes="Bold" Grid.Column="0" />
+                                    </VerticalStackLayout>
+                                    <VerticalStackLayout  Grid.Column="1">
+                                        <Label Text="Due Amount" FontSize="12" TextColor="#6F7978" Grid.Column="0" />
+                                        <Label Text="₹85,000" FontSize="12" TextColor="#3F4948" FontAttributes="Bold" Grid.Column="0" />
+                                    </VerticalStackLayout>
+                                    <VerticalStackLayout  Grid.Column="2">
+                                        <Label Text="Facility Availed" FontSize="12" TextColor="#6F7978" Grid.Column="0" />
+                                        <Label Text="₹85,000" FontSize="12" TextColor="#3F4948" FontAttributes="Bold" Grid.Column="0" />
+                                    </VerticalStackLayout>
+
+
+
+                                </Grid>
+                                <Grid Grid.Row="2" ColumnDefinitions="50*,50*,50*" Margin="0,5,0,0">
+                                    <VerticalStackLayout >
+                                        <Label Text="Invoice Amount" FontSize="12" TextColor="#6F7978" Grid.Column="0" />
+                                        <Label Text="₹85,000" FontSize="12" TextColor="#3F4948" FontAttributes="Bold" Grid.Column="0" />
+                                    </VerticalStackLayout>
+                                    <VerticalStackLayout  Grid.Column="1">
+                                        <Label Text="Processing Amount" FontSize="11" TextColor="#6F7978" Grid.Column="0" />
+                                        <Label Text="₹85,000" FontSize="12" TextColor="#3F4948" FontAttributes="Bold" Grid.Column="0" />
+                                    </VerticalStackLayout>
+
+
+
+
+                                </Grid>
+                                <Grid Grid.Row="3" ColumnDefinitions="8*,2*">
+                                    <Button BackgroundColor="Transparent" FontSize="14" WidthRequest="230" Text="Download Invoice" BorderColor="#6F7978" TextColor="#4AA09B" BorderWidth="1" ImageSource="greendownload.png" CornerRadius="100" VerticalOptions="Center" Margin="0,10,20,0"/>
+
+                                    <Button BackgroundColor="#4AA09B" TextColor="White" Grid.Column="1" Text="Pay" WidthRequest="73" HeightRequest="40" CornerRadius="100" VerticalOptions="Center" Margin="0,10,10,0"/>
+
+
+                                </Grid>
+                            </Grid>
+                        </Frame>
+
+
+                        <Frame WidthRequest="343" HeightRequest="190" Padding="15" VerticalOptions="Start" HasShadow="True" BackgroundColor="#F2F4F3" Margin="0,20,0,20">
+                            <Grid RowDefinitions="auto,auto,*">
+                                <Grid Grid.Row="0" ColumnDefinitions="60*,40*">
+                                    <VerticalStackLayout Grid.Column="0" Margin="0,10,0,0">
+                                        <Label Text="Car Name &amp; Variant" FontSize="16" TextColor="#191C1C" FontAttributes="Bold" Margin="0,0,0,5"/>
+
+                                        <Label Text="Purchase ID- 77553775" TextColor="#191C1C" FontSize="14"/>
+                                    </VerticalStackLayout>
+                                    <Image Source="bigcar.png" Grid.Column="1"  WidthRequest="144" HeightRequest="72" />
+                                </Grid>
+                                <Grid Grid.Row="1" ColumnDefinitions="50*,50*,50*">
+                                    <VerticalStackLayout >
+                                        <Label Text="Amount Paid" FontSize="12" TextColor="#6F7978" Grid.Column="0" />
+                                        <Label Text="₹85,000" FontSize="12" TextColor="#3F4948" FontAttributes="Bold" Grid.Column="0" />
+                                    </VerticalStackLayout>
+                                    <VerticalStackLayout  Grid.Column="1">
+                                        <Label Text="Due Amount" FontSize="12" TextColor="#6F7978" Grid.Column="0" />
+                                        <Label Text="₹85,000" FontSize="12" TextColor="#3F4948" FontAttributes="Bold" Grid.Column="0" />
+                                    </VerticalStackLayout>
+                                    <VerticalStackLayout  Grid.Column="2">
+                                        <Label Text="Facility Availed" FontSize="12" TextColor="#6F7978" Grid.Column="0" />
+                                        <Label Text="₹85,000" FontSize="12" TextColor="#3F4948" FontAttributes="Bold" Grid.Column="0" />
+                                    </VerticalStackLayout>
+
+
+                                </Grid>
+                                <Grid Grid.Row="2">
+                                    <Button BackgroundColor="#4AA09B" TextColor="White" Text="Pay" HeightRequest="40" CornerRadius="100" VerticalOptions="Center" Margin="0,10,0,0"/>
+
+                                </Grid>
+                            </Grid>
+                        </Frame>
+                    </Grid>-->
+
+
+
+
+
+                </tabview:SfTabItem.Content>
+
+            </tabview:SfTabItem>
+
+            <tabview:SfTabItem Header="Closed"  FontSize="16" Style="{StaticResource TabItemStyle}">
+                <tabview:SfTabItem.Content>
+
+                    <ScrollView>
+                     
+                            <CollectionView  ItemsSource="{Binding ProcurementsClosed}"
+SelectionMode="None" Grid.Row="0" Margin="0,16,0,0">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate x:DataType="model:ProcurementClosedModel">
+
+
+
+
+                                        <Frame WidthRequest="343" HeightRequest="206" Padding="15" VerticalOptions="Start" HasShadow="True" BackgroundColor="#F2F4F3" Margin="0,20,0,0">
+                                            <Grid RowDefinitions="auto,auto,*">
+                                                <Grid Grid.Row="0" ColumnDefinitions="70*,45*">
+                                                    <VerticalStackLayout Grid.Column="0" Margin="0,15,40,0">
+                                                    <Label>
+                                                        <Label.FormattedText>
+                                                            <FormattedString>
+                                                                <Span Text="{Binding CarName}" FontAttributes="Bold" TextColor="#191C1C" FontSize="16" />
+                                                                <Span Text=" &amp; " FontAttributes="Bold" TextColor="#191C1C" FontSize="16"/>
+                                                                <Span Text="{Binding Variant}" FontAttributes="Bold" TextColor="#191C1C" FontSize="16" />
+                                                            </FormattedString>
+                                                        </Label.FormattedText>
+                                                    </Label>
+
+                                                    <Label Text="{Binding PurchaseId, StringFormat='Purchase Id- {0}'}" TextColor="#191C1C" FontSize="14"/>
+                                                    </VerticalStackLayout>
+                                                    <Image Source="bigcar.png" Grid.Column="1"  WidthRequest="144" HeightRequest="72" />
+                                                </Grid>
+                                                <Grid Grid.Row="1" ColumnDefinitions="50*,50*" Margin="0,5,0,0">
+                                                    <VerticalStackLayout >
+                                                        <Label Text="Amount Paid" FontSize="12" TextColor="#6F7978" Grid.Column="0" />
+                                                        <Label Text="{Binding Amount_paid, StringFormat='₹{0:F0}'}" FontSize="10" TextColor="#3F4948" FontAttributes="Bold" CharacterSpacing="2" Grid.Column="0" />
+                                                    </VerticalStackLayout>
+                                                    <VerticalStackLayout  Grid.Column="1">
+                                                        <Label Text="Closed on" FontSize="12" TextColor="#6F7978" Grid.Column="0"  />
+                                                    <Label Text="{Binding ColsedOn, StringFormat='{0:MM/dd/yyyy}'}" FontSize="10" TextColor="#3F4948" FontAttributes="Bold" CharacterSpacing="2" Grid.Column="0" />
+                                                    </VerticalStackLayout>
+
+
+                                                </Grid>
+                                                <Grid Grid.Row="2" ColumnDefinitions="40*,60*" Margin="0,20,0,0">
+                                                    <Button BackgroundColor="Transparent" HeightRequest="40" TextColor="#4AA09B" BorderColor="#6F7978" BorderWidth="1"  Text="Invoice" CornerRadius="100" ImageSource="greendownload.png" WidthRequest="126" VerticalOptions="Center" >
+
+                                                    </Button>
+
+                                                    <Button BackgroundColor="#4AA09B" TextColor="White" HeightRequest="40" Grid.Column="1" ImageSource="download.png" Text="Payment Details" WidthRequest="177" CornerRadius="100" VerticalOptions="Center" />
+
+                                                </Grid>
+                                            </Grid>
+                                        </Frame>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            <CollectionView.EmptyView>
+                                <ContentView>
+                                    <StackLayout HorizontalOptions="CenterAndExpand"
+  VerticalOptions="CenterAndExpand">
+                                        <Label Text="No Record found."
+Margin="10,25,10,10"
+FontAttributes="Bold"
+FontSize="18"
+HorizontalOptions="Fill"
+HorizontalTextAlignment="Center" />
+                                    </StackLayout>
+                                </ContentView>
+                            </CollectionView.EmptyView>
+                        </CollectionView>
+
+
+
+                            <!--<Frame WidthRequest="343" HeightRequest="206" Padding="15" VerticalOptions="Start" HasShadow="True" BackgroundColor="#F2F4F3" Margin="0,20,0,0">
+                                <Grid RowDefinitions="auto,auto,*">
+                                    <Grid Grid.Row="0" ColumnDefinitions="80*,50*">
+                                        <VerticalStackLayout Grid.Column="0" Margin="0,15,40,0">
+                                            <Label Text="Car Name &amp; Variant" TextColor="#191C1C" FontSize="16" FontAttributes="Bold" Margin="0,0,0,5"/>
+
+                                            <Label Text="Purchase ID- 77553775" TextColor="#191C1C" FontSize="14"/>
+                                        </VerticalStackLayout>
+                                        <Image Source="bigcar.png" Grid.Column="1"  WidthRequest="144" HeightRequest="72" />
+                                    </Grid>
+                                    <Grid Grid.Row="1" ColumnDefinitions="50*,50*" Margin="0,5,0,0">
+                                        <VerticalStackLayout >
+                                            <Label Text="Amount Paid" FontSize="12" TextColor="#6F7978" Grid.Column="0" />
+                                            <Label Text="₹85,000" FontSize="10" TextColor="#3F4948" FontAttributes="Bold" CharacterSpacing="2" Grid.Column="0" />
+                                        </VerticalStackLayout>
+                                        <VerticalStackLayout  Grid.Column="1">
+                                            <Label Text="Closed on" FontSize="12" TextColor="#6F7978" Grid.Column="0"  />
+                                            <Label Text="22/08/2023" FontSize="10" TextColor="#3F4948" FontAttributes="Bold" CharacterSpacing="2" Grid.Column="0" />
+                                        </VerticalStackLayout>
+
+
+                                    </Grid>
+                                    <Grid Grid.Row="2" ColumnDefinitions="40*,60*" Margin="0,20,0,0">
+                                        <Button BackgroundColor="Transparent" HeightRequest="40" TextColor="#4AA09B" BorderColor="#6F7978" BorderWidth="1"  Text="Invoice" CornerRadius="100" ImageSource="greendownload.png" WidthRequest="126" VerticalOptions="Center" >
+
+                                        </Button>
+
+                                        <Button BackgroundColor="#4AA09B" TextColor="White" HeightRequest="40" Grid.Column="1" ImageSource="download.png" Text="Payment Details" WidthRequest="177" CornerRadius="100" VerticalOptions="Center" />
+
+                                    </Grid>
+                                </Grid>
+                            </Frame>
+
+
+
+                            <Frame WidthRequest="343" HeightRequest="206" Padding="15" VerticalOptions="Start" HasShadow="True" BackgroundColor="#F2F4F3" Margin="0,20,0,0">
+                                <Grid RowDefinitions="auto,auto,*">
+                                    <Grid Grid.Row="0" ColumnDefinitions="80*,50*">
+                                        <VerticalStackLayout Grid.Column="0" Margin="0,15,40,0">
+                                            <Label Text="Car Name &amp; Variant" TextColor="#191C1C" FontSize="16" FontAttributes="Bold" Margin="0,0,0,5"/>
+
+                                            <Label Text="Purchase ID- 77553775" TextColor="#191C1C" FontSize="14"/>
+                                        </VerticalStackLayout>
+                                        <Image Source="bigcar.png" Grid.Column="1"  WidthRequest="144" HeightRequest="72" />
+                                    </Grid>
+                                    <Grid Grid.Row="1" ColumnDefinitions="50*,50*" Margin="0,5,0,0">
+                                        <VerticalStackLayout >
+                                            <Label Text="Amount Paid" FontSize="12" TextColor="#6F7978" Grid.Column="0" />
+                                            <Label Text="₹85,000" FontSize="10" TextColor="#3F4948" FontAttributes="Bold" CharacterSpacing="2" Grid.Column="0" />
+                                        </VerticalStackLayout>
+                                        <VerticalStackLayout  Grid.Column="1">
+                                            <Label Text="Closed on" FontSize="12" TextColor="#6F7978" Grid.Column="0"  />
+                                            <Label Text="22/08/2023" FontSize="10" TextColor="#3F4948" FontAttributes="Bold" CharacterSpacing="2" Grid.Column="0" />
+                                        </VerticalStackLayout>
+
+
+                                    </Grid>
+                                    <Grid Grid.Row="2" ColumnDefinitions="40*,60*" Margin="0,20,0,0">
+                                        <Button BackgroundColor="Transparent" HeightRequest="40" TextColor="#4AA09B" BorderColor="#6F7978" BorderWidth="1"  Text="Invoice" CornerRadius="100" ImageSource="greendownload.png" WidthRequest="126" VerticalOptions="Center" >
+
+                                        </Button>
+
+                                        <Button BackgroundColor="#4AA09B" TextColor="White" Grid.Column="1" HeightRequest="40" ImageSource="download.png" Text="Payment Details" WidthRequest="177" CornerRadius="100" VerticalOptions="Center" />
+
+                                    </Grid>
+                                </Grid>
+                            </Frame>-->
+
+                    </ScrollView>
+
+                </tabview:SfTabItem.Content>
+
+            </tabview:SfTabItem>
+            <tabview:SfTabItem Header="In Process"    FontSize="16" Style="{StaticResource TabItemStyle}"  >
+                <tabview:SfTabItem.Content>
+
+                    <ScrollView>
+                        <CollectionView  ItemsSource="{Binding ProcurementsinProcess}"
+SelectionMode="None" Grid.Row="0" Margin="0,16,0,0">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="model:ProcurmentInProcessModel">
+                                    <Frame WidthRequest="343" HeightRequest="166" Padding="15" HasShadow="True" VerticalOptions="Start" BackgroundColor="#F2F4F3" Margin="0,20,0,0">
+                                        <Grid RowDefinitions="auto,auto,*">
+                                            <Grid Grid.Row="0" ColumnDefinitions="70*,30*" Margin="0,0,0,0">
+
+                                                <Label Text="Applied on 23/05/2023"  TextColor="#6F7978" FontSize="12"/>
+                                                <Label Text="11:54 AM" Grid.Column="1" TextColor="#6F7978" HorizontalOptions="End" FontSize="12"/>
+
+                                            </Grid>
+                                            <Grid Grid.Row="1" ColumnDefinitions="80*,50*">
+                                                <VerticalStackLayout Grid.Column="0" Margin="0,15,40,0">
+                                                    <Label>
+                                                        <Label.FormattedText>
+                                                        <FormattedString>
+                                                                <Span Text="{Binding CarName}" FontAttributes="Bold" TextColor="#191C1C" FontSize="16" />
+                                                                <Span Text=" &amp; " FontAttributes="Bold" TextColor="#191C1C" FontSize="16"/>
+                                                                <Span Text="{Binding Variant}" FontAttributes="Bold" TextColor="#191C1C" FontSize="16" />
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                    </Label>
+
+                                                    <Label Text="{Binding PurchaseId, StringFormat='Purchase Id- {0}'}" TextColor="#191C1C" FontSize="14"/>
+                                                </VerticalStackLayout>
+                                                <Image Source="bigcar.png" Grid.Column="1"  WidthRequest="144" HeightRequest="72" />
+                                            </Grid>
+                                            <Grid Grid.Row="2" ColumnDefinitions="50*,50*" Margin="0,10,0,0">
+                                                <VerticalStackLayout >
+                                                    <Label Text="Purchase Amount" FontSize="12" TextColor="#191C1C" Grid.Column="0" />
+                                                    <Label Text="{Binding Purchased_Amount, StringFormat='₹{0:F0}'}" FontSize="10" TextColor="#3F4948" FontAttributes="Bold" CharacterSpacing="2" Grid.Column="0" />
+                                                </VerticalStackLayout>
+                                                <VerticalStackLayout  Grid.Column="1" Margin="0,5,0,0">
+                                                    <Button Text="{Binding Status}" BackgroundColor="Transparent" CornerRadius="8" TextColor="{Binding Status, Converter={StaticResource ProcurementStatusConverter}}" FontSize="12" Padding="0,0,0,0" BorderColor="#6F7978" BorderWidth="1" WidthRequest="88" HeightRequest="24"  Grid.Column="0" HorizontalOptions="End" />
+
+                                                </VerticalStackLayout>
+
+
+                                            </Grid>
+
+                                        </Grid>
+                                    </Frame>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                            <CollectionView.EmptyView>
+                                <ContentView>
+                                    <StackLayout HorizontalOptions="CenterAndExpand"
+  VerticalOptions="CenterAndExpand">
+                                        <Label Text="No Record found."
+Margin="10,25,10,10"
+FontAttributes="Bold"
+FontSize="18"
+HorizontalOptions="Fill"
+HorizontalTextAlignment="Center" />
+                                    </StackLayout>
+                                </ContentView>
+                            </CollectionView.EmptyView>
+                        </CollectionView>
+
+
+
+                        <!--<Frame WidthRequest="343" HeightRequest="166" Padding="15" HasShadow="True" VerticalOptions="Start" BackgroundColor="#F2F4F3" Margin="0,20,0,0">
+                                <Grid RowDefinitions="auto,auto,*">
+                                    <Grid Grid.Row="0" ColumnDefinitions="70*,30*" Margin="0,0,0,0">
+
+                                        <Label Text="Applied on 23/05/2023"  TextColor="#6F7978" FontSize="12"/>
+                                        <Label Text="11:54 AM" Grid.Column="1" TextColor="#6F7978" HorizontalOptions="End" FontSize="12"/>
+
+                                    </Grid>
+                                    <Grid Grid.Row="1" ColumnDefinitions="80*,50*">
+                                        <VerticalStackLayout Grid.Column="0" Margin="0,15,40,0">
+                                            <Label Text="Car Name &amp; Variant" TextColor="#191C1C" FontSize="16" FontAttributes="Bold" Margin="0,0,0,5"/>
+
+                                            <Label Text="Purchase ID: 77553775" TextColor="#191C1C" FontSize="14"/>
+                                        </VerticalStackLayout>
+                                        <Image Source="bigcar.png" Grid.Column="1"  WidthRequest="144" HeightRequest="72" />
+                                    </Grid>
+                                    <Grid Grid.Row="2" ColumnDefinitions="50*,50*" Margin="0,10,0,0">
+                                        <VerticalStackLayout >
+                                            <Label Text="Purchase Amount" FontSize="12" TextColor="#191C1C" Grid.Column="0" />
+                                            <Label Text="₹85,000" FontSize="10" TextColor="#3F4948" FontAttributes="Bold" CharacterSpacing="2" Grid.Column="0" />
+                                        </VerticalStackLayout>
+                                        <VerticalStackLayout  Grid.Column="1" Margin="0,5,0,0">
+                                            <Button Text="Rejected" BackgroundColor="Transparent" CornerRadius="8" FontSize="12" Padding="0,0,0,0" BorderColor="#6F7978" BorderWidth="1" WidthRequest="88" HeightRequest="24" TextColor="#BA1A1A" Grid.Column="0" HorizontalOptions="End" />
+
+                                        </VerticalStackLayout>
+
+
+                                    </Grid>
+
+                                </Grid>
+                            </Frame>
+
+                            <Frame WidthRequest="343" HeightRequest="166" Padding="15" VerticalOptions="Start" HasShadow="True" BackgroundColor="#F2F4F3" Margin="0,20,0,0">
+                                <Grid RowDefinitions="auto,auto,*">
+                                    <Grid Grid.Row="0" ColumnDefinitions="70*,30*" Margin="0,0,0,0">
+
+                                        <Label Text="Applied on 23/05/2023"  TextColor="#6F7978" FontSize="12"/>
+                                        <Label Text="11:54 AM" Grid.Column="1" TextColor="#6F7978" HorizontalOptions="End" FontSize="12"/>
+
+                                    </Grid>
+                                    <Grid Grid.Row="1" ColumnDefinitions="80*,50*">
+                                        <VerticalStackLayout Grid.Column="0" Margin="0,15,40,0">
+                                            <Label Text="Car Name &amp; Variant" TextColor="#191C1C" FontSize="16" FontAttributes="Bold" Margin="0,0,0,5"/>
+
+                                            <Label Text="Purchase ID: 77553775" TextColor="#191C1C" FontSize="14"/>
+                                        </VerticalStackLayout>
+                                        <Image Source="bigcar.png" Grid.Column="1"  WidthRequest="144" HeightRequest="72" />
+                                    </Grid>
+                                    <Grid Grid.Row="2" ColumnDefinitions="50*,50*" Margin="0,10,0,0">
+                                        <VerticalStackLayout >
+                                            <Label Text="Purchase Amount" FontSize="12" TextColor="#191C1C" Grid.Column="0" />
+                                            <Label Text="₹85,000" FontSize="10" TextColor="#3F4948" FontAttributes="Bold" CharacterSpacing="2" Grid.Column="0" />
+                                        </VerticalStackLayout>
+                                        <VerticalStackLayout  Grid.Column="1" Margin="0,5,0,0">
+                                            <Button Text="Approved" BackgroundColor="Transparent" CornerRadius="8" FontSize="12" Padding="0,0,0,0" BorderColor="#6F7978" BorderWidth="1" WidthRequest="88" HeightRequest="24" TextColor="#379B56" Grid.Column="0" HorizontalOptions="End" />
+
+                                        </VerticalStackLayout>
+
+
+                                    </Grid>
+
+                                </Grid>
+                            </Frame>
+
+
+                        </VerticalStackLayout>-->
+                    </ScrollView>
+                </tabview:SfTabItem.Content>
+
+            </tabview:SfTabItem>
+
+        </tabview:SfTabView.Items>
+    </tabview:SfTabView>
+
+</ContentPage>

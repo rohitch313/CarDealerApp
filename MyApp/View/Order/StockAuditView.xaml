@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyApp.StockAuditView"
+                        xmlns:tabview="clr-namespace:Syncfusion.Maui.TabView;assembly=Syncfusion.Maui.TabView"
+               xmlns:editors="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
+             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+xmlns:model="clr-namespace:MyApp.Model"
+ xmlns:viewmodel="clr-namespace:MyApp.ViewModel"
+              x:DataType="viewmodel:CarViewModel" Shell.ForegroundColor="Black" Shell.TitleColor="Black"
+             Title="Stock Audit" Shell.TabBarIsVisible="False" BackgroundColor="White">
+    <ContentPage.Resources>
+        <Style TargetType="tabview:SfTabItem" x:Key="TabItemStyle">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup>
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="TextColor" Value="#4AA09B" />
+
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="TextColor" Value="Black" />
+
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <!-- Define a custom toolbar item with the "+" icon -->
+        <ToolbarItem
+  IconImageSource="notifications_none.png"
+  Priority="0"
+  Order="Primary"
+     Clicked="ToolbarItem_Clicked"
+  />
+    </ContentPage.ToolbarItems>
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior Command="{Binding BackCommand}"
+                   IsEnabled="False" />
+    </Shell.BackButtonBehavior>
+    <tabview:SfTabView x:Name="tabView"  IndicatorBackground="#4AA09B"  
+                        >
+
+        <Shell.BackButtonBehavior>
+            <BackButtonBehavior Command="{Binding BackCommand}"
+                   IsEnabled="False"  />
+        </Shell.BackButtonBehavior>
+        <tabview:SfTabView.Items >
+            <tabview:SfTabItem Header="Audit Pending"    FontSize="16" Style="{StaticResource TabItemStyle}"  >
+                <tabview:SfTabItem.Content>
+
+                    <ScrollView>
+                     
+                            <CollectionView x:Name="collectionViewName"
+            ItemsSource="{Binding PendingAudit}"
+            SelectionMode="None" Margin="0,16,0,0">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate  >
+
+                                        <Frame Style="{StaticResource FrameAuditDue}" CornerRadius="8" HasShadow="True"   VerticalOptions="Start" HorizontalOptions="Center" Margin="0,0,0,16">
+                                            <Grid RowDefinitions="auto,auto">
+                                                <Grid Grid.Row="0" ColumnDefinitions="auto,auto">
+                                                    <Image Source="car.png"  HorizontalOptions="Start"  HeightRequest="56" WidthRequest="56" VerticalOptions="Center" Margin="15,10,0,0"/>
+                                                    <VerticalStackLayout Grid.Column ="1" Margin="20,10,0,0">
+                                                        <Label Style="{StaticResource LabelPrimaryMedium}"   HorizontalOptions="Start"  VerticalOptions="Start">
+                                                            <Label.FormattedText>
+                                                                <FormattedString>
+                                                                    <Span Text="{Binding CarName}" />
+                                                                    <Span Text=" and " />
+                                                                    <Span Text="{Binding Variant}" />
+                                                                </FormattedString>
+                                                            </Label.FormattedText>
+                                                        </Label>
+                                                        <Label Text="{Binding CarId, StringFormat='Purchase Id- {0:C}'}" HorizontalOptions="Start" FontSize="10" TextColor="Black"  VerticalOptions="Start"  />
+                                                        <Label Text="{Binding DaysLeftToVerify}" HorizontalOptions="Start" FontSize="12" TextColor="#4AA09B" VerticalOptions="Start"/>
+                                                    </VerticalStackLayout>
+                                                </Grid>
+                                                <Grid Grid.Row="1" ColumnDefinitions="auto,auto" Margin="0,15,0,0" >
+
+                                                    <Frame Padding="0" IsVisible="{Binding IsVerified, Converter={StaticResource InvertedBooleanConverter}}" BorderColor="#6F7978" CornerRadius="100" HeightRequest="40" WidthRequest="216" Margin="15,0,15,0" Background="#FAFDFB">
+                                                        <!--<editors:SfComboBox x:Name="comboBox" HeightRequest="56" BackgroundColor="Transparent"   Placeholder="Purpose" FontSize="14" PlaceholderColor="#4AA09B"  
+                                                            ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.Status}"
+                                                        
+SelectedItem="{Binding SelectedStatus}"                Stroke="Transparent" TextColor="#3F4948" VerticalOptions="Center" Margin="15,0,15,0" />-->
+                                                        <Grid ColumnDefinitions="*,auto">
+                                                            <Picker ZIndex="1" WidthRequest="158"
+                                                                    
+Title="Status"
+FontSize="14"
+TitleColor="#50afaa"
+Margin="15,0,15,0"
+                                                                 
+                                                                    
+TextColor="#4AA09B"
+ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.Address}"
+   SelectedItem="{Binding Source={x:Reference collectionViewName}, Path=BindingContext.SelectedAddress}" >
+
+
+                                                                <Picker.ItemDisplayBinding>
+                                                                    <Binding Path="Address" />
+                                                                    <!-- Replace 'FilterName' with your actual property name to display -->
+                                                                </Picker.ItemDisplayBinding>
+                                                            </Picker>
+                                                            <ImageButton   Source="dropdowngreen.png" Grid.Column="1" ZIndex="0" HorizontalOptions="End" VerticalOptions="Center" WidthRequest="18" HeightRequest="18" Margin="0,0,15,0"  />
+                                                        </Grid>
+
+
+
+                                                    </Frame>
+                                                    <Button IsVisible="{Binding IsVerified, Converter={StaticResource InvertedBooleanConverter}}"  Grid.Column="1" BackgroundColor="#4AA09B" TextColor="White" Text="Verify" HeightRequest="40" WidthRequest="87" CommandParameter="{Binding }"   Command="{Binding BindingContext.VerifyButtonCommand, Source={x:Reference collectionViewName}}" CornerRadius="100" Margin="3,0,0,0"/>
+                                                    <Frame VerticalOptions="Center" CornerRadius="100" IsVisible="{Binding IsVerified}" Padding="0" WidthRequest="313" HeightRequest="40" BorderColor="#6F7978" Background="#FAFDFB" Margin="15,0,0,0">
+                                                        <HorizontalStackLayout HorizontalOptions="Center">
+                                                            <Label Text="Sold" TextColor="#4AA09B" VerticalOptions="Center" FontSize="14" FontAttributes="Bold"  HorizontalOptions="Center"/>
+                                                            <Image Source="sold.png" VerticalOptions="Center" HeightRequest="15" WidthRequest="15" Margin="3,0,0,0"  HorizontalOptions="Center"/>
+                                                        </HorizontalStackLayout>
+
+                                                    </Frame>
+                                                </Grid>
+                                            </Grid>
+                                        </Frame>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                                <CollectionView.EmptyView>
+                                    <ContentView>
+                                        <StackLayout HorizontalOptions="CenterAndExpand"
+  VerticalOptions="CenterAndExpand">
+                                            <Label Text="No Record found."
+Margin="10,25,10,10"
+FontAttributes="Bold"
+FontSize="18"
+HorizontalOptions="Fill"
+HorizontalTextAlignment="Center" />
+                                        </StackLayout>
+                                    </ContentView>
+                                </CollectionView.EmptyView>
+                            </CollectionView>
+
+
+
+
+
+
+
+
+
+
+                    </ScrollView>
+
+                </tabview:SfTabItem.Content>
+
+            </tabview:SfTabItem>
+
+            <tabview:SfTabItem Header="Audit Status"  FontSize="16" Style="{StaticResource TabItemStyle}" >
+                <tabview:SfTabItem.Content>
+
+
+                    <ScrollView>
+
+                            <CollectionView
+                 ItemsSource="{Binding StatusAudit}"
+                 SelectionMode="None" Margin="0,16,0,0">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate x:DataType="model:UpcomingAuditModel">
+                                        <Frame Style="{StaticResource PaymentFrame}" HeightRequest="72" HasShadow="True" HorizontalOptions="Center" >
+                                            <Grid ColumnDefinitions="auto,*,40"  Padding="10,0,0,0">
+                                                <Image Source="car.png"  HorizontalOptions="Center" HeightRequest="56" WidthRequest="56" VerticalOptions="Center"      />
+                                                <Grid RowDefinitions="auto,auto,auto" Grid.Column="1">
+                                                    <Label Style="{StaticResource LabelPrimaryMedium}" Grid.Row="0" Padding="20,10,0,0">
+                                                        <Label.FormattedText>
+                                                            <FormattedString>
+                                                                <Span Text="{Binding CarName}" />
+                                                                <Span Text=" and " />
+                                                                <Span Text="{Binding Variant}" />
+                                                            </FormattedString>
+                                                        </Label.FormattedText>
+                                                    </Label>
+                                                    <Label Text="{Binding CarId, StringFormat='Purchase Id- {0:C}'}" FontSize="10" TextColor="Black"  Grid.Row="1" Padding="20,0,0,0" Margin="0,0,0,0"/>
+                                                    <Label Text="{Binding AuditDate, StringFormat='{0:MM/dd/yyyy}' }" FontSize="12" TextColor="#4AA09B"  Grid.Row="2" Padding="20,0,0,0"  />
+
+                                                </Grid>
+                                                <Image Grid.Column="2"  Source="{Binding Status, Converter={StaticResource AuditStatusToIconConverter}}"   HorizontalOptions="Start"   VerticalOptions="Center" WidthRequest="24" HeightRequest="24"  />
+
+
+
+                                            </Grid>
+                                        </Frame>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                                <CollectionView.EmptyView>
+                                    <ContentView>
+                                        <StackLayout HorizontalOptions="CenterAndExpand"
+  VerticalOptions="CenterAndExpand">
+                                            <Label Text="No Record found."
+Margin="10,25,10,10"
+FontAttributes="Bold"
+FontSize="18"
+HorizontalOptions="Fill"
+HorizontalTextAlignment="Center" />
+                                        </StackLayout>
+                                    </ContentView>
+                                </CollectionView.EmptyView>
+                            </CollectionView>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </ScrollView>
+
+                </tabview:SfTabItem.Content>
+            </tabview:SfTabItem>
+
+
+
+        </tabview:SfTabView.Items>
+    </tabview:SfTabView>
+</ContentPage>

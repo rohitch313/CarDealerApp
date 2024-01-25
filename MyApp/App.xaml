@@ -1,0 +1,28 @@
+﻿<?xml version = "1.0" encoding = "UTF-8" ?>
+<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MyApp.Converter"
+             x:Class="MyApp.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                
+                <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
+                <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+                <ResourceDictionary Source="MyResources/CustomResourceDictonary.xaml" />
+             
+            </ResourceDictionary.MergedDictionaries>
+            <local:AuditStatusToIconConverter x:Key="AuditStatusToIconConverter" />
+            <local:PurchaseVehicleStatusToIconConverter x:Key="PurchaseVehicleStatusToIconConverter" />
+
+            <local:StatusColorConverter x:Key="StatusColorConverter" />
+            <local:StringIsNotEmptyConverter x:Key="StringIsNotEmptyConverter" />
+            <local:InvertedBooleanConverter x:Key="InvertedBooleanConverter"/>
+            <local:ProcurementStatusConverter x:Key="ProcurementStatusConverter"/>
+
+        </ResourceDictionary>
+
+
+    </Application.Resources>
+    
+</Application>

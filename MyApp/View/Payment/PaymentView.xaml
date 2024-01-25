@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:tabview="clr-namespace:Syncfusion.Maui.TabView;assembly=Syncfusion.Maui.TabView"
+                   xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+      xmlns:model="clr-namespace:MyApp.Model" BackgroundColor="White"
+             
+       xmlns:viewmodel="clr-namespace:MyApp.ViewModel"
+             x:Class="MyApp.PaymentView"
+             Title="Payment"   x:DataType="viewmodel:PaymentViewModel" Shell.TabBarIsVisible="False">
+    <ContentPage.Resources>
+        <Style TargetType="tabview:SfTabItem" x:Key="TabItemStyle">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup>
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="TextColor" Value="#4AA09B" />
+
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="TextColor" Value="Black" />
+
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <!-- Define a custom toolbar item with the "+" icon -->
+        <ToolbarItem
+      IconImageSource="notifications_none.png"
+      Priority="0"
+      Order="Primary"
+         Clicked="ToolbarItem_Clicked"
+      />
+    </ContentPage.ToolbarItems>
+
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior Command="{Binding BackCommand}"
+                 IsEnabled="False"  />
+    </Shell.BackButtonBehavior>
+
+
+    <tabview:SfTabView x:Name="tabView"  IndicatorBackground="#4AA09B"  
+                           >
+        <tabview:SfTabView.Items >
+            <tabview:SfTabItem Header="Payment Due"    FontSize="16"  Style="{StaticResource TabItemStyle}" >
+                <tabview:SfTabItem.Content>
+                    <ScrollView>
+                  
+                            <CollectionView x:Name="mCollectionView"
+                 ItemsSource="{Binding DuePayments}"
+                 SelectionMode="None" Margin="0,16,0,0" >
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate  >
+                                        <Frame Style="{StaticResource PaymentFrame}" HorizontalOptions="Center"    >
+                                            <Grid ColumnDefinitions="auto,auto,auto"  Padding="10,0,0,0">
+                                                <Image Source="car.png"  HorizontalOptions="Center" HeightRequest="56" WidthRequest="56" VerticalOptions="Center"      />
+                                                <Grid RowDefinitions="auto,auto,auto" Grid.Column="1">
+                                                    <Label Style="{StaticResource LabelPrimaryMedium}" Grid.Row="0" Padding="20,10,0,0">
+                                                        <Label.FormattedText>
+                                                            <FormattedString>
+                                                                <Span Text="{Binding CarName }" />
+                                                                <Span Text=" and " />
+                                                                <Span Text="{Binding Variant}" />
+                                                            </FormattedString>
+                                                        </Label.FormattedText>
+                                                    </Label>
+
+                                                    <Label Text="{Binding Amount_Due, StringFormat='Amount Due: ₹{0:F0}'}" FontSize="14" TextColor="#4AA09B"  Grid.Row="1" Padding="20,0,0,0" />
+                                                    <Label Text="{Binding CarId, StringFormat='Purchase Id- {0}'}" FontSize="10" TextColor="Black"  Grid.Row="2" Padding="20,0,0,0" Margin="0,0,0,10"/>
+                                                </Grid>
+                                                <Button Grid.Column="2"  Text="Pay" Command="{Binding  Path= BindingContext.PayCommand,Source={Reference mCollectionView }}"  CommandParameter="{Binding .}" FontSize="10" BackgroundColor="#4AA09B" TextColor="White" CornerRadius="12" HorizontalOptions="Center" Margin="22,0,20,0
+                                                        " Padding="-30"  VerticalOptions="Center" WidthRequest="59" HeightRequest="24" />
+
+
+
+                                            </Grid>
+                                        </Frame>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                                <CollectionView.EmptyView>
+                                    <ContentView>
+                                        <StackLayout HorizontalOptions="CenterAndExpand"
+  VerticalOptions="CenterAndExpand">
+                                            <Label Text="No Record found."
+Margin="10,25,10,10"
+FontAttributes="Bold"
+FontSize="18"
+HorizontalOptions="Fill"
+HorizontalTextAlignment="Center" />
+                                        </StackLayout>
+                                    </ContentView>
+                                </CollectionView.EmptyView>
+                            </CollectionView>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </ScrollView>
+
+
+                </tabview:SfTabItem.Content>
+
+            </tabview:SfTabItem>
+
+            <tabview:SfTabItem Header="Payment History"  FontSize="16" Style="{StaticResource TabItemStyle}" >
+                <tabview:SfTabItem.Content>
+                    <Grid RowDefinitions="*,auto">
+                        <ScrollView>
+
+                            <CollectionView
+              ItemsSource="{Binding Paystatus}"
+              SelectionMode="Single" SelectedItem="{Binding SelectPayment}" ZIndex="2"  Grid.Row="0" Margin="0,16,0,0">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate x:DataType="model:PaymentDto">
+                                        <Frame Style="{StaticResource PaymentFrame}" ZIndex="0"  >
+                                            <VisualStateManager.VisualStateGroups>
+                                                <VisualStateGroup Name="CommonStates">
+                                                    <VisualState Name="Normal"></VisualState>
+                                                    <VisualState Name="Selected">
+                                                        <VisualState.Setters>
+                                                            <Setter Property="BackgroundColor" Value="lightGray"></Setter>
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+
+                                                </VisualStateGroup>
+                                            </VisualStateManager.VisualStateGroups>
+
+                                            <Grid RowDefinitions="auto,auto">
+                                                <Grid ColumnDefinitions="auto,auto,auto"  Grid.Row="0"  Padding="10,0,0,0">
+                                                    <Image Source="car.png"  HorizontalOptions="Center" HeightRequest="56" WidthRequest="56" VerticalOptions="Center"      />
+
+                                                    <Grid RowDefinitions="auto,auto,auto" Grid.Column="1">
+                                                        <Label Style="{StaticResource LabelPrimaryMedium}" Grid.Row="0" Padding="20,10,0,0">
+                                                            <Label.FormattedText>
+                                                                <FormattedString>
+                                                                    <Span Text="{Binding CarName }" />
+                                                                    <Span Text=" and " />
+                                                                    <Span Text="{Binding Variant}" />
+                                                                </FormattedString>
+                                                            </Label.FormattedText>
+                                                        </Label>
+
+                                                        <Label Text="{Binding Amount_Due, StringFormat='Amount Due: ₹{0:F0}'}" FontSize="14" TextColor="#4AA09B"  Grid.Row="1" Padding="20,0,0,0" />
+                                                        <Label Text="{Binding CarId, StringFormat='Purchase Id- {0}'}" FontSize="10" TextColor="Black"  Grid.Row="2" Padding="20,0,0,0" Margin="0,0,0,10" />
+
+                                                    </Grid>
+                                                    <Label Text="{Binding PaymentStatus}" Grid.Column="2"   FontSize="11"  TextColor="{Binding PaymentStatus, Converter={StaticResource StatusColorConverter}}"  HorizontalOptions="Center" Margin="38,15,0,0"  VerticalOptions="Center" WidthRequest="59" HeightRequest="24" />
+
+
+
+                                                </Grid>
+                                            </Grid>
+                                        </Frame>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                                <CollectionView.EmptyView>
+                                    <ContentView>
+                                        <StackLayout HorizontalOptions="CenterAndExpand"
+  VerticalOptions="CenterAndExpand">
+                                            <Label Text="No Record found."
+Margin="10,25,10,10"
+FontAttributes="Bold"
+FontSize="18"
+HorizontalOptions="Fill"
+HorizontalTextAlignment="Center" />
+                                        </StackLayout>
+                                    </ContentView>
+                                </CollectionView.EmptyView>
+                            </CollectionView>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        </ScrollView>
+                        <Button Style="{StaticResource LargeButtonColor}" Grid.Row="1" Text="Upload Payment Proof" Command="{Binding PaymentProofCommand}" Margin="0,0,0,5"/>
+                    </Grid>
+
+
+
+                </tabview:SfTabItem.Content>
+            </tabview:SfTabItem>
+
+
+
+        </tabview:SfTabView.Items>
+    </tabview:SfTabView>
+
+</ContentPage>

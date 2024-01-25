@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyApp.UpdatePictureView"
+             xmlns:mauiStepper="clr-namespace:MauiStepper.Views;assembly=MauiStepper"
+                                      xmlns:model="clr-namespace:MyApp.Model"
+xmlns:viewmodel="clr-namespace:MyApp.ViewModel" x:DataType="viewmodel:UpdatePictureViewModel"
+             Title="Upload Picture" Shell.TabBarIsVisible="False" BackgroundColor="White">
+    <ContentPage.ToolbarItems>
+        <!-- Define a custom toolbar item with the "+" icon -->
+        <ToolbarItem
+      IconImageSource="notifications_none.png"
+      Priority="0"
+      Order="Primary"
+         Clicked="ToolbarItem_Clicked"
+      />
+    </ContentPage.ToolbarItems>
+
+
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior Command="{Binding BackCommand}"
+                    IsEnabled="False"  />
+    </Shell.BackButtonBehavior>
+   
+    <ScrollView>
+        <Grid RowDefinitions="*,auto">
+            <VerticalStackLayout>
+                <Grid ColumnDefinitions="auto,*">
+                    <Image Margin="16,16,0,0" x:Name="stepper" Source="stepper.png" HorizontalOptions="Start" WidthRequest="20" HeightRequest="150"/>
+                    <Image Margin="16,16,0,0" x:Name="stepperdark" Source="steppertick.png" HorizontalOptions="Start" WidthRequest="20" IsVisible="False" HeightRequest="150"/>
+                    <VerticalStackLayout Grid.Column="1">
+                        <Label Text="Selfie with Vehicle" TextColor="#051F1E" FontSize="16" Margin="16,12,0,0"/>
+                        <Grid>
+                            <ImageButton Margin="16,16,0,0" CornerRadius="4"
+    x:Name="capturedImage"
+    Source="{Binding }"
+    Style="{StaticResource ImageButton}"
+    SemanticProperties.Hint="Counts the number of times you click"
+  Clicked="CameraTapped1"
+    HorizontalOptions="Start"
+    BorderColor="Gray"
+    BorderWidth="3"/>
+
+                            <Label x:Name="plusiconOne" Text="+" FontSize="Large" FontAttributes="Bold" TextColor="#4AA09B" Padding="55,49,0,0" VerticalOptions="Start" HorizontalOptions="Start" />
+                        </Grid>
+                    </VerticalStackLayout>
+                </Grid>
+                <Button x:Name="changeImageButton1" Text="Change photo" FontSize="14" Clicked="ChangeImage1"   HorizontalOptions="Start" Margin="53,-10,0,0" WidthRequest="96" HeightRequest="20" Padding="0" IsVisible="False" TextColor="#4AA09B" Background="Transparent"/>
+
+                <Grid ColumnDefinitions="auto,*">
+                    <Image Margin="16,16,0,0" x:Name="stepper1" Source="stepper.png" HorizontalOptions="Start" WidthRequest="20" HeightRequest="150"/>
+                    <Image Margin="16,16,0,0" x:Name="stepper1dark" Source="steppertick.png" HorizontalOptions="Start" WidthRequest="20" IsVisible="False" HeightRequest="150"/>
+                    <VerticalStackLayout Grid.Column="1">
+                        <Label Text="Picture of Whole Vehicle" TextColor="#051F1E" FontSize="16" Margin="16,16,0,0"/>
+                        <Grid>
+                            <ImageButton Margin="16,16,0,0" CornerRadius="4"
+    x:Name="capturedImage2"
+    Source="{Binding }"
+    Style="{StaticResource ImageButton}"
+    SemanticProperties.Hint="Counts the number of times you click"
+   Clicked="CameraTapped2"
+    HorizontalOptions="Start"
+    BorderColor="Gray"
+    BorderWidth="3"/>
+                            <Label x:Name="plusiconTwo" Text="+" FontSize="Large" FontAttributes="Bold" TextColor="#4AA09B" Padding="55,49,0,0" VerticalOptions="Start" HorizontalOptions="Start" />
+                        </Grid>
+                    </VerticalStackLayout>
+                </Grid>
+                <Button x:Name="changeImageButton2" Text="Change photo" FontSize="14" Clicked="ChangeImage2" HorizontalOptions="Start" Margin="53,0,0,0" WidthRequest="96" HeightRequest="20" Padding="0" IsVisible="False" TextColor="#4AA09B" Background="Transparent"/>
+                <Grid ColumnDefinitions="auto,*">
+                    <Image Margin="16,16,0,0"  x:Name="stepper2" Source="stepper.png" HorizontalOptions="Start" WidthRequest="20" HeightRequest="150"/>
+                    <Image Margin="16,16,0,0"  x:Name="stepper2dark" Source="steppertick.png" HorizontalOptions="Start" WidthRequest="20" IsVisible="False" HeightRequest="150"/>
+                    <VerticalStackLayout Grid.Column="1">
+                        <Label Text="Picture of Odometer" TextColor="#051F1E" FontSize="16" Margin="16,16,0,0"/>
+                        <Grid>
+                            <ImageButton Margin="16,16,0,0"
+    x:Name="capturedImage3"
+    Source="{Binding }"
+    Style="{StaticResource ImageButton}" CornerRadius="4"
+    SemanticProperties.Hint="Counts the number of times you click"
+   Clicked="CameraTapped3"
+    HorizontalOptions="Start"
+    BorderColor="Gray"
+    BorderWidth="3"/>
+                            <Label x:Name="plusiconThree" Text="+" FontSize="Large" FontAttributes="Bold" TextColor="#4AA09B" Padding="55,49,0,0" VerticalOptions="Start" HorizontalOptions="Start" />
+                        </Grid>
+                    </VerticalStackLayout>
+                </Grid>
+                <Button x:Name="changeImageButton3" Text="Change photo" FontSize="14" Clicked="ChangeImage3" HorizontalOptions="Start" Margin="53,0,0,5" WidthRequest="96" HeightRequest="20" Padding="0" IsVisible="False" TextColor="#4AA09B" Background="Transparent"/>
+            </VerticalStackLayout>
+            <Button Style="{StaticResource LargeButtonColor}" Grid.Row="1" VerticalOptions="End" Text="Submit" Clicked="SubmitButtonClicked" Margin="0,0,0,5"/>
+        </Grid>
+    </ScrollView>
+</ContentPage>

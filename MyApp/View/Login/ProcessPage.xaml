@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyApp.View.Login.ProcessPage"
+             Shell.TabBarIsVisible="False" BackgroundColor="White">
+    <Shell.TitleView>
+        <StackLayout Orientation="Horizontal">
+            <!-- Add your logo here -->
+            <Image Source="logo_1.png"/>
+        </StackLayout>
+    </Shell.TitleView>
+
+    <Grid Margin="0,90,0,0" >
+        <Grid Margin="0,0,0,0" HorizontalOptions="Center">
+            <Image Source="process.png" WidthRequest="300"  VerticalOptions="Start"/>
+        </Grid>
+        
+        <Grid VerticalOptions="Center"  Margin="0,120,0,0" HorizontalOptions="Center" >
+            <Label Text="Application In Process" Margin="0,30,0,0" FontAttributes="Bold" FontSize="16"  HorizontalOptions="Center" />
+            <Label  TextColor="#3F4948" Text="      Your application is currently being processed." Margin="0,60,0,0"  FontSize="14"  />
+            <Label  TextColor="#3F4948" Text="  We're working diligently to complete it. Thank you" Margin="0,80,0,0"  FontSize="14"  />
+            <Label  TextColor="#3F4948" Text=" for choosing us!" HorizontalOptions="Center" Margin="0,100,0,0"  FontSize="14"  />
+
+        </Grid>
+    </Grid>
+
+</ContentPage>

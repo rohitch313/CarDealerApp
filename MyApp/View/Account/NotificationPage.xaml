@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MyApp.ViewModel"
+             x:Class="MyApp.View.Account.NotificationPage"
+             Title="Notifications" BackgroundColor="White">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior Command="{Binding BackToAllCommand}"
+                   IsEnabled="False"  />
+    </Shell.BackButtonBehavior>
+
+
+
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="2" >
+
+            <StackLayout>
+                <StackLayout WidthRequest="375" HeightRequest="91" Padding="10" BackgroundColor="#FAFDFB">
+                    <HorizontalStackLayout Margin="10,0,10,0">
+                        <ImageButton Source="admin.png" HeightRequest="40" WidthRequest="40" BackgroundColor="#e0fffa" CornerRadius="22" />
+                        <VerticalStackLayout Margin="20,0,0,0" Spacing="2">
+                            <Label Text="Your Payment is due" TextColor="#4aa09b" FontSize="14" />
+                            <Label Text="You have crossed 45th day since. Please complete your repayment to free your limit." TextColor="#3F4948" WidthRequest="287" FontSize="11.5" Padding="0,0,10,0" />
+                            <Label Text="Today at 5:40 PM" TextColor="#006a66" FontSize="10" />
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+                </StackLayout>
+                <BoxView Color="LightGray" HeightRequest="1" HorizontalOptions="FillAndExpand" />
+            </StackLayout>
+
+            <StackLayout>
+                <StackLayout WidthRequest="375" HeightRequest="97" Padding="10"  BackgroundColor="#FAFDFB"  >
+                <HorizontalStackLayout Margin="10,0,10,0" >
+
+                    <ImageButton  Source="admin.png" HeightRequest="40" WidthRequest="40" BackgroundColor="#e0fffa" CornerRadius="22"  />
+
+                    <VerticalStackLayout Margin="20,0,0,0" Spacing="2">
+                        <Label Text="Purchase Vehicle" TextColor="#3F4948" FontSize="14" />
+                            <Label Text="You have limit available and you have not purchased a vehicle for long. Purchase vehicle to take benefit of your limit" TextColor="#3F4948" WidthRequest="287" FontSize="11.5" Padding="0,0,10,0"/>
+                        <Label Text="Yesterday" TextColor="#006a66" FontSize="10" />
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+            </StackLayout>
+                <BoxView Color="LightGray" HeightRequest="1" HorizontalOptions="FillAndExpand"  Margin="0,10,0,0"/>
+            </StackLayout>
+
+            <StackLayout>
+                <StackLayout WidthRequest="375" HeightRequest="91" Padding="10"  BackgroundColor="#FAFDFB"  >
+                <HorizontalStackLayout Margin="10,0,10,0" >
+
+                    <ImageButton  Source="admin.png" HeightRequest="40" WidthRequest="40" BackgroundColor="#e0fffa" CornerRadius="22"  />
+
+                    <VerticalStackLayout Margin="20,0,0,0" Spacing="2">
+                        <Label Text="Stock Audit" TextColor="#3F4948" FontSize="14" />
+                            <Label Text="Your audit is due now. Please complete to continue hassle free purchase." TextColor="#3F4948" WidthRequest="287" FontSize="11.5" Padding="0,0,10,0" />
+                        <Label Text="2 days ago" TextColor="#006a66" FontSize="10" />
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+            </StackLayout>
+            <BoxView Color="LightGray" HeightRequest="1" HorizontalOptions="FillAndExpand" />
+            </StackLayout>
+            <StackLayout>
+                <StackLayout WidthRequest="375" HeightRequest="91" Padding="10"  BackgroundColor="#FAFDFB"  >
+                <HorizontalStackLayout Margin="10,0,5,0" >
+
+                    <ImageButton  Source="admin.png" HeightRequest="40" WidthRequest="40" BackgroundColor="#e0fffa" CornerRadius="22"  />
+
+                    <VerticalStackLayout Margin="20,0,0,0" Spacing="2">
+                        <Label Text="Sign Documents" TextColor="#3F4948" FontSize="14" />
+                            <Label Text="Your purchase is approved. please sign documents to place order." TextColor="#3F4948" WidthRequest="287" FontSize="11.5" Padding="0,0,10,0" />
+                        <Label Text="2 days ago" TextColor="#006a66" FontSize="10" />
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+            </StackLayout>
+                <BoxView Color="LightGray" HeightRequest="1" HorizontalOptions="FillAndExpand" />
+            </StackLayout>
+
+            <StackLayout>
+                <StackLayout WidthRequest="375" HeightRequest="91" Padding="10"  BackgroundColor="#FAFDFB"  >
+                <HorizontalStackLayout Margin="10,0,10,0" >
+
+                    <ImageButton  Source="admin.png" HeightRequest="40" WidthRequest="40" BackgroundColor="#e0fffa" CornerRadius="22"  />
+
+                    <VerticalStackLayout Margin="20,0,0,0" Spacing="2">
+                        <Label Text="Sign Documents" TextColor="#3F4948" FontSize="14" />
+                            <Label Text="Your purchase is approved. please sign documents to place order." TextColor="#3F4948" WidthRequest="287" FontSize="11.5" Padding="0,0,10,0" />
+                        <Label Text="2 days ago" TextColor="#006a66" FontSize="10" />
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+            </StackLayout>
+                <BoxView Color="LightGray" HeightRequest="1" HorizontalOptions="FillAndExpand" />
+            </StackLayout>
+            <StackLayout>
+                <StackLayout WidthRequest="375" HeightRequest="91" Padding="10"  BackgroundColor="#FAFDFB"  >
+                <HorizontalStackLayout Margin="10,0,10,0" >
+
+                    <ImageButton  Source="admin.png" HeightRequest="40" WidthRequest="40" BackgroundColor="#e0fffa" CornerRadius="22"  />
+
+                    <VerticalStackLayout Margin="20,0,0,0" Spacing="2">
+                        <Label Text="Sign Documents" TextColor="#3F4948" FontSize="14" />
+                            <Label Text="Your purchase is approved. please sign documents to place order." TextColor="#3F4948" WidthRequest="287" FontSize="11.5" Padding="0,0,10,0" />
+                        <Label Text="2 days ago" TextColor="#006a66" FontSize="10" />
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+            </StackLayout>
+                <BoxView Color="LightGray" HeightRequest="1" HorizontalOptions="FillAndExpand" />
+            </StackLayout>
+        
+            <StackLayout WidthRequest="375" HeightRequest="91" Padding="10"  BackgroundColor="#FAFDFB"  >
+                <HorizontalStackLayout Margin="10,0,10,0" >
+
+                    <ImageButton  Source="admin.png" HeightRequest="40" WidthRequest="40" BackgroundColor="#e0fffa" CornerRadius="22"  />
+
+                    <VerticalStackLayout Margin="20,0,0,0" Spacing="2">
+                        <Label Text="Onboarding Complete" TextColor="#3F4948" FontSize="14" />
+                        <Label Text="Your onboarding is complete. Now you can procure vehicle." TextColor="#3F4948" WidthRequest="287" FontSize="11.5" Padding="0,0,10,0" />
+                        <Label Text="2 days ago" TextColor="#006a66" FontSize="10" />
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+            </StackLayout>
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+
+</ContentPage>

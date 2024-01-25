@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyApp.View.Account.ProfileInformationPage"
+             Title="Profile Information" BackgroundColor="White"
+             xmlns:model="clr-namespace:MyApp.Models"
+             xmlns:viewmodel="clr-namespace:MyApp.ViewModel" >
+
+    <VerticalStackLayout Margin="30" Spacing="20">
+        <VerticalStackLayout>
+            <Label Text="Contact Number" TextColor="#191C1C" FontAttributes="Bold" FontSize="16" />
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="+91" TextColor="#3F4948" FontSize="14"/>
+                        <Span Text="{Binding  DuePayments[0].ContactNumber}" TextColor="#3F4948" FontSize="14" />
+                        <Span Text="!" TextColor="White" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+           
+        </VerticalStackLayout>
+        <VerticalStackLayout>
+            <Label Text="Email" FontAttributes="Bold" TextColor="#191C1C" FontSize="16"  />
+            <Label Text="{Binding  DuePayments[0].Email}" FontSize="14" TextColor="#3F4948"  />
+        </VerticalStackLayout>
+        <VerticalStackLayout>
+            <Label Text="Shop Address" FontAttributes="Bold" TextColor="#191C1C" FontSize="16"  />
+            <Label Text="{Binding  DuePayments[0].ShopAddress}" FontSize="14" TextColor="#3F4948" />
+        </VerticalStackLayout>
+        <VerticalStackLayout>
+            <Label Text="Residence Address" FontAttributes="Bold" TextColor="#191C1C" FontSize="16"  />
+            <Label Text="{Binding  DuePayments[0].ResidenceAddress}" FontSize="14" TextColor="#3F4948" />
+        </VerticalStackLayout>
+        <VerticalStackLayout>
+            <Label Text="Alternative Contact Number" FontAttributes="Bold" TextColor="#191C1C" FontSize="16"  />
+            <Label Text="{Binding  DuePayments[0].AlternativeNumber}" FontSize="14" TextColor="#3F4948" />
+        </VerticalStackLayout>
+        <VerticalStackLayout>
+            <Label Text="Type" FontAttributes="Bold" FontSize="16" TextColor="#191C1C" />
+            <Label Text="{Binding  DuePayments[0].Type}" FontSize="14" TextColor="#3F4948" />
+        </VerticalStackLayout>
+        <VerticalStackLayout>
+            <Label Text="City" FontAttributes="Bold" FontSize="16" TextColor="#191C1C" />
+            <Label Text="{Binding  DuePayments[0].City}" FontSize="14" TextColor="#3F4948" />
+        </VerticalStackLayout>
+        <VerticalStackLayout>
+            <Label Text="Account Details" FontAttributes="Bold" FontSize="16" TextColor="#191C1C"  />
+            <Label Text="{Binding  DuePayments[0].AccountDetails}" FontSize="14" TextColor="#3F4948" />
+        </VerticalStackLayout>
+        <VerticalStackLayout>
+            <Label Text="Repayment Account Details" FontAttributes="Bold" FontSize="16" TextColor="#191C1C" />
+            <Label Text="{Binding  DuePayments[0].AccountDetails}" FontSize="14" TextColor="#3F4948"  />
+        </VerticalStackLayout>
+    </VerticalStackLayout>
+
+</ContentPage>

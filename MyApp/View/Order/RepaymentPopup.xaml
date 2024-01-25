@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyApp.RepaymentPopup"
+             xmlns:toolkit ="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+               Color="Transparent" >
+    <Frame CornerRadius="12">
+        <VerticalStackLayout>
+            <Image Source="repayment.png" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="250" HeightRequest="250"/>
+            <Label 
+            Text="Your Repayment is now due."
+            VerticalOptions="Center" TextColor="#191C1C" FontSize="16" 
+            HorizontalOptions="Center" FontAttributes="Bold" />
+            <Label  TextColor="#3F4948" Text="To continue procuring, please repay the due" FontSize="14" HorizontalOptions="Center" VerticalOptions="Center"/>
+            <Label TextColor="#3F4948" Text="amount promptly. Your success drives our" FontSize="14" HorizontalOptions="Center" VerticalOptions="Center"/>
+            <Label TextColor="#3F4948" Text="platform, and timely repayments ensure" FontSize="14" HorizontalOptions="Center" VerticalOptions="Center"/>
+            <Label TextColor="#3F4948" Text="uninterrupted access to our services." FontSize="14" HorizontalOptions="Center" VerticalOptions="Center"/>
+            <Label TextColor="#3F4948" Text="Thank you for your cooperation." FontSize="14" HorizontalOptions="Center" VerticalOptions="Center"/>
+        </VerticalStackLayout>
+    </Frame>
+</toolkit:Popup>

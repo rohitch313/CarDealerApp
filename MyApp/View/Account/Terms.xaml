@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyApp.View.Account.Terms"
+             Title="Terms" BackgroundColor="White" >
+    <ContentPage.ToolbarItems>
+        <!-- Define a custom toolbar item with the "+" icon -->
+        <ToolbarItem
+         IconImageSource="notifications_none.png"
+         Priority="0"
+         Order="Primary"
+            Clicked="ToolbarItem_Clicked"
+         />
+    </ContentPage.ToolbarItems>
+    <ScrollView>
+        <VerticalStackLayout Margin="20,10,20,0" >
+
+            <Label FontFamily="AppTextFont"
+            Text="Terms and Conditions of Use"
+            FontAttributes="Bold" TextColor="#191C1C"
+            FontSize="16"
+             />
+            <Label FontFamily="AppTextFont" TextColor="#3F4948" Margin="0,13,0,0" CharacterSpacing="0.8" Text="The terms and conditions contained herein (“T'&amp;'C”) contain the complete terms and conditions that apply to a User and govern the User’s access to and use of the Service (as defined below). However, it is made clear that some of the Services may require the User to agree to additional terms and conditions. Unless otherwise provided, those additional terms shall be deemed to be incorporated into the T&amp;C ." FontSize="14"/>
+
+            <Label FontFamily="AppTextFont" TextColor="#3F4948" Text="1. ACCEPTANCE OF TERMS" Margin="0,20,0,0" FontSize="15"/>
+            <Grid ColumnDefinitions="auto, *">
+                <Label FontFamily="AppTextFont" TextColor="#3F4948" Grid.Column="1" CharacterSpacing="0.8"  Text="(a) By (i) using the Platform or availing the Services provided through the Platform in any way; or (ii) browsing the Platform, the user is deemed to have read, understood and accepted the T&amp;C  as well as the privacy policy which is available on the Platform." Margin="2,0,2,0" FontSize="12"/>
+                <Label FontFamily="AppTextFont" TextColor="#3F4948" Text="." FontAttributes="Bold" VerticalOptions="Start" Margin=" 10,-13,5,0" FontSize="20"/>
+            </Grid>
+            <Grid ColumnDefinitions="auto, *">
+                <Label FontFamily="AppTextFont" TextColor="#3F4948" CharacterSpacing="0.8" Grid.Column="1" Text="(b)The user acknowledges that by accessing and using the Platform and availing any of the Services, it agrees to be bound by the T&amp;C. The T&amp;C establishes a relationship between the company and the user, whereby the user shall act in the capacity as may be mutually agreed between the user and company." Margin="2,0,2,0" FontSize="12"/>
+                <Label FontFamily="AppTextFont" TextColor="#3F4948" Text="." FontAttributes="Bold" VerticalOptions="Start" Margin=" 10,-13,5,0" FontSize="20"/>
+            </Grid>
+            <Grid ColumnDefinitions="auto, *">
+                <Label FontFamily="AppTextFont" TextColor="#3F4948" Grid.Column="1" CharacterSpacing="0.8" Text="(c)In the event the user is not agreeable to the T&amp;C, it shall not access the Platform or avail the Services." Margin="2,0,2,0" FontSize="12"/>
+                <Label FontFamily="AppTextFont" TextColor="#3F4948" Text="." FontAttributes="Bold" VerticalOptions="Start" Margin=" 10,-13,5,0" FontSize="20"/>
+            </Grid>
+            <Grid ColumnDefinitions="auto, *">
+                <Label FontFamily="AppTextFont" TextColor="#3F4948" Grid.Column="1" CharacterSpacing="0.8" Text="(d) The T&amp;C contained herein expressly supersede all prior agreements or arrangements between the company and the user." Margin="2,0,2,0" FontSize="12"/>
+                <Label FontFamily="AppTextFont" TextColor="#3F4948" Text="." FontAttributes="Bold" VerticalOptions="Start" Margin=" 10,-13,5,0" FontSize="20"/>
+            </Grid>
+            <Grid ColumnDefinitions="auto, *">
+                <Label FontFamily="AppTextFont" TextColor="#3F4948" Grid.Column="1" CharacterSpacing="0.8" Text="(e)The user understands that the access to the Platform and the offer of Services is conditional upon the user’s irrevocable consent and acceptance of all the terms, conditions and obligations contained in the T&amp;C  (as may be amended from time to time). For utilising the Services, the user agrees to enter into or execute any document, agreement or terms and conditions which is required by the company and agrees to abide by such document or agreement or terms and conditions while utilising the services on the Platform." Margin="2,0,2,0" FontSize="12"/>
+                <Label FontFamily="AppTextFont" TextColor="#3F4948" Text="." FontAttributes="Bold" VerticalOptions="Start" Margin=" 10,-13,5,0" FontSize="20"/>
+            </Grid>
+            <Grid ColumnDefinitions="auto, *">
+                <Label FontFamily="AppTextFont" TextColor="#3F4948" Grid.Column="1" CharacterSpacing="0.8" Text="(f) By accessing the Platform, the user hereby agrees to receive communication regarding registration on the Platform or Platform Services (including but not limited to any promotional, transactional messages) through Email and/or SMS and/ or any other electronic medium, third party channels (including WhatsApp) from the company. " Margin="2,0,2,0" FontSize="12"/>
+                <Label FontFamily="AppTextFont" TextColor="#3F4948" Text="." FontAttributes="Bold" VerticalOptions="Start" Margin=" 10,-13,5,0" FontSize="20"/>
+            </Grid>
+            <Grid ColumnDefinitions="auto, *">
+                <Label FontFamily="AppTextFont" Grid.Column="1"  Text="2." Margin="0,20,0,0" FontSize="15"/>
+                <Label FontFamily="AppTextFont" Text="." FontAttributes="Bold" VerticalOptions="Start" Margin=" 10,10,5,0" FontSize="20"/>
+            </Grid>
+            <Grid ColumnDefinitions="auto, *">
+                <Label FontFamily="AppTextFont" TextColor="#3F4948" Grid.Column="1" CharacterSpacing="0.8"  Text="(a)By agreeing to the T&amp;C and by availing the Services, the user represents that it is lawfully able to enter into contracts (if an individual) or has the legal authority to enter into contracts on behalf of the body corporate/company/partnership." Margin="2,0,2,0" FontSize="12"/>
+                <Label FontFamily="AppTextFont" TextColor="#3F4948" Text="." FontAttributes="Bold" VerticalOptions="Start" Margin=" 10,-13,5,0" FontSize="20"/>
+            </Grid>
+            <Grid ColumnDefinitions="auto, *">
+                <Label FontFamily="AppTextFont" TextColor="#3F4948" CharacterSpacing="0.8" Grid.Column="1" Text="(b)The user acknowledges in relation to the Services that the company is merely providing a platform for facilitating the transactions between the user and the financial institutions(FIs) on the Platform and shall in no manner be liable or responsible for any such transactions or be construed as an agent of the user in relation to the Services." Margin="2,0,2,0" FontSize="12"/>
+                <Label FontFamily="AppTextFont" TextColor="#3F4948" Text="." FontAttributes="Bold" VerticalOptions="Start" Margin=" 10,-13,5,0" FontSize="20"/>
+            </Grid>
+            <Grid ColumnDefinitions="auto, *">
+                <Label FontFamily="AppTextFont" CharacterSpacing="0.8" Grid.Column="1" Text="(c)The user acknowledges and agrees that any use of the Platform and the availing of the Services is at the sole risk of the user." Margin="2,0,2,0" FontSize="12"/>
+                <Label FontFamily="AppTextFont" Text="." FontAttributes="Bold" VerticalOptions="Start" Margin=" 10,-13,5,0" FontSize="20"/>
+            </Grid>
+            <Grid ColumnDefinitions="auto, *">
+                <Label FontFamily="AppTextFont" TextColor="#3F4948" CharacterSpacing="0.8" Grid.Column="1" Text="(d)The user acknowledges and agrees that it is solely responsible for its data uploaded to or transmitted through the Platform, as well as, the consequences of uploading or transmitting its data onto or through the Platform." Margin="2,0,2,0" FontSize="12"/>
+                <Label FontFamily="AppTextFont" TextColor="#3F4948" Text="." FontAttributes="Bold" VerticalOptions="Start" Margin=" 10,-13,5,0" FontSize="20"/>
+            </Grid>
+            <Grid ColumnDefinitions="auto, *">
+                <Label FontFamily="AppTextFont" TextColor="#3F4948" CharacterSpacing="0.8" Grid.Column="1" Text="(e)The user acknowledges, represents, and warrants that with respect to any data posted on or transmitted through the Platform:" Margin="2,0,2,0" FontSize="12"/>
+                <Label FontFamily="AppTextFont" TextColor="#3F4948" Text="." FontAttributes="Bold" VerticalOptions="Start" Margin=" 10,-13,5,0" FontSize="20"/>
+            </Grid>
+            <Grid ColumnDefinitions="auto, *">
+                <Label FontFamily="AppTextFont" TextColor="#3F4948" CharacterSpacing="0.8" Grid.Column="1" Text="(i)It has all necessary licences, rights, consents, and permissions to upload, transmit, or publish such data and that it grants company, express, irrevocable licence and authorization to use such data for the Services; and" Margin="2,0,2,0" FontSize="12"/>
+                <Label FontFamily="AppTextFont" TextColor="#3F4948" Text="." FontAttributes="Bold" VerticalOptions="Start" Margin=" 10,-13,5,0" FontSize="20"/>
+            </Grid>
+            <Grid ColumnDefinitions="auto, *">
+                <Label FontFamily="AppTextFont" TextColor="#3F4948" CharacterSpacing="0.8" Grid.Column="1" Text="(ii)Any use by the company of the data uploaded, transmitted, or published by it on the Platform will not constitute infringement of any third party’s rights, over such data posted or transmitted through the Platform." Margin="2,0,2,0" FontSize="12"/>
+                <Label FontFamily="AppTextFont" TextColor="#3F4948" Text="." FontAttributes="Bold" VerticalOptions="Start" Margin=" 10,-13,5,0" FontSize="20"/>
+            </Grid>
+
+            <Grid ColumnDefinitions="auto, *">
+                <Label FontFamily="AppTextFont" Grid.Column="1" CharacterSpacing="0.8" Text="(f)The user agrees and acknowledges that it is solely responsible to the company and to any counterparties for any breach of its obligations under the T&amp;C and for the consequences of any such breach (including any loss or damage which company may suffer)." Margin="2,0,2,0" FontSize="12"/>
+                <Label FontFamily="AppTextFont" Text="." FontAttributes="Bold" VerticalOptions="Start" Margin=" 10,-13,5,0" FontSize="20"/>
+            </Grid>
+            <Grid ColumnDefinitions="auto, *">
+                <Label FontFamily="AppTextFont" TextColor="#3F4948" Grid.Column="1" Text="3. USE OF PLATFORM AND SERVICES" Margin="0,20,0,0" FontSize="15"/>
+                <Label FontFamily="AppTextFont" TextColor="#3F4948" Text="." FontAttributes="Bold" VerticalOptions="Start" Margin=" 10,10,5,0" FontSize="20"/>
+            </Grid>
+            <Grid ColumnDefinitions="auto, *">
+                <Label FontFamily="AppTextFont" TextColor="#3F4948" Grid.Column="1" CharacterSpacing="0.8"  Text="(a)In order to access the Platform and to obtain the benefit of the Services, the user will have to register and create an account by providing accurate and complete information. The company is not responsible for verifying the accuracy and completeness of any such information. The user agrees and acknowledges that the onus of ensuring the completeness and accuracy of such information shall, at all times, lie with the user." Margin="2,0,2,0" FontSize="12"/>
+                <Label FontFamily="AppTextFont" TextColor="#3F4948" Text="." FontAttributes="Bold" VerticalOptions="Start" Margin=" 10,-13,5,0" FontSize="20"/>
+            </Grid>
+            <Grid ColumnDefinitions="auto, *">
+                <Label FontFamily="AppTextFont" TextColor="#3F4948" Grid.Column="1" CharacterSpacing="0.8" Text="(b) The user agrees that its usage of the Platform and accessing various financial products offered by third parties on the Platform, shall not in any way imply, suggest, or constitute any sponsorship, recommendation, opinion, advice (whether investment or legal) or approval of company in favour of or against such third parties or their products." Margin="2,0,2,0" FontSize="12"/>
+                <Label FontFamily="AppTextFont" TextColor="#3F4948" Text="." FontAttributes="Bold" VerticalOptions="Start" Margin=" 10,-13,5,0" FontSize="20"/>
+            </Grid>
+            <Grid ColumnDefinitions="auto, *">
+                <Label FontFamily="AppTextFont" TextColor="#3F4948" Grid.Column="1" CharacterSpacing="0.8" Text="(c) The user agrees, undertakes and declares that it has made its own assessment of the Platform and has determined that it is fit for its purposes. The user will be using the Platform at its own risk, irrespective of the capacity in which it uses the Platform and it is expressly clarified that company shall owe no fiduciary or other duty or obligation to the user other than as expressly agreed in writing by company.." Margin="2,0,2,0" FontSize="12"/>
+                <Label FontFamily="AppTextFont" TextColor="#3F4948" Text="." FontAttributes="Bold" VerticalOptions="Start" Margin=" 10,-13,5,0" FontSize="20"/>
+            </Grid>
+            <Grid ColumnDefinitions="auto, *">
+                <Label FontFamily="AppTextFont" Grid.Column="1" CharacterSpacing="0.8" Text="(d) The user agrees and acknowledges that any transactions entered into through the Platform shall be at the sole discretion of the user and the relevant counterparties on the Platform as applicable and that company shall not be liable for any delay, rejection or approval of any application/proposal made through the Platform to any counterparty, or any failure on part of the user or counterparties to settle/conclude any transactions with any counterparty." Margin="2,0,2,0" FontSize="12"/>
+                <Label FontFamily="AppTextFont" Text="." FontAttributes="Bold" VerticalOptions="Start" Margin=" 10,-13,5,0" FontSize="20"/>
+            </Grid>
+            <Grid ColumnDefinitions="auto, *">
+                <Label FontFamily="AppTextFont" TextColor="#3F4948" Grid.Column="1" CharacterSpacing="0.8" Text="(e) The user agrees and acknowledges that all reports and documents provided on Nxfin(if any), and any information transmitted through Nxfin has been prepared based on the information, data and documents furnished by the user and relevant counterparties onboarded onto the Platform. The user hereby agrees and acknowledges that company does not warrant the genuineness of such information and shall not be liable for any error, deviation or omission in such reports, documents or information on account of any error, deviation or omission of whatsoever nature in the information collected from/furnished by the user, or any other person in this regard. The user further acknowledges that company has not carried out any “know your customer” or credit underwriting or any other similar or related checks in relation to any counterparty registered on the Platform or any information shared by such counterparty, and all such diligences and checks required under applicable law to verify the genuineness or lack thereof in relation to the user, or information shared by the user shall at all times, be the sole responsibility of the user." Margin="2,0,2,0" FontSize="12"/>
+                <Label FontFamily="AppTextFont" TextColor="#3F4948" Text="." FontAttributes="Bold" VerticalOptions="Start" Margin=" 10,-13,5,0" FontSize="20"/>
+            </Grid>
+            <Grid ColumnDefinitions="auto, *">
+                <Label FontFamily="AppTextFont" Grid.Column="1" CharacterSpacing="0.8" Text="(f) Without prejudice to the above, the user hereby agrees, acknowledges and accepts that company may, for the purpose of rendering the Services, seek to obtain such necessary and requisite information and data as required by it from various authoritative sources including but not limited to statutory and regulatory filings, credit bureau records and such other sources as determined by it at its sole discretion, as required by it to effectively render the Services and the user hereby accepts and provides consent for the same." Margin="2,0,2,0" FontSize="12"/>
+                <Label FontFamily="AppTextFont" Text="." FontAttributes="Bold" VerticalOptions="Start" Margin=" 10,-13,5,0" FontSize="20"/>
+            </Grid>
+            <Grid ColumnDefinitions="auto, *">
+                <Label FontFamily="AppTextFont" TextColor="#3F4948" Grid.Column="1" CharacterSpacing="0.8" Text="(g) The user hereby agrees and understands that its account created for the purposes of using the Services shall be visible to all counterparties and platform users of the Platform and irrevocably consents to the same. Provided that it is clear that nothing in these T&amp;C shall be construed in a manner as to required by the company to obtain any specific or additional consent from the user with respect to featuring the user’s account on its Platform and/or displaying the same to other counterparties, along with the information furnished by the user to company as regards the Platform. It is understood that the information shared by the user with the company as reflected on the Platform shall be in accordance with applicable laws in force." Margin="2,0,2,0" FontSize="12"/>
+                <Label FontFamily="AppTextFont" TextColor="#3F4948" Text="." FontAttributes="Bold" VerticalOptions="Start" Margin=" 10,-13,5,0" FontSize="20"/>
+            </Grid>
+            <Grid ColumnDefinitions="auto, *">
+                <Label FontFamily="AppTextFont" TextColor="#3F4948" Grid.Column="1" CharacterSpacing="0.8" Text="(h)company reserves the right to reject the request for creation of the account, at its sole discretion, if the data or information submitted appears to be incomplete, incorrect or fraudulent." Margin="2,0,2,0" FontSize="12"/>
+                <Label FontFamily="AppTextFont" TextColor="#3F4948" Text="." FontAttributes="Bold" VerticalOptions="Start" Margin=" 10,-13,5,0" FontSize="20"/>
+            </Grid>
+            <Grid ColumnDefinitions="auto, *">
+                <Label FontFamily="AppTextFont" TextColor="#3F4948" Grid.Column="1" CharacterSpacing="0.8" Text="(i) On the creation of the account, the company grants to the user a non-exclusive, limited privilege to access and use the Platform and the Services offered on the Platform, subject to compliance with the T&amp;C. The account created by the user for use of the Platform shall be non-transferable and its use is restricted to the user creating the account." Margin="2,0,2,0" FontSize="12"/>
+                <Label FontFamily="AppTextFont" TextColor="#3F4948" Text="." FontAttributes="Bold" VerticalOptions="Start" Margin=" 10,-13,5,0" FontSize="20"/>
+            </Grid>
+            <Grid ColumnDefinitions="auto, *">
+
+                <Label FontFamily="AppTextFont" TextColor="#3F4948" Grid.Column="1" CharacterSpacing="0.8" Text="(j)The user is solely responsible for its account and any activity on it, and must keep the log-in credentials in respect of its account secure at all times. The user shall not sell, transfer or sublicense the log-in credentials in relation to its account on the Platform to any other person. The user shall ensure that only its duly authorised personnel shall access and operate its account. The user undertakes that the user shall promptly on becoming aware of any unauthorised use of its account, notify the company at of such unauthorised use or access . It is expressly understood that company shall not be liable to ensure or verify that the usage of the user’s account is by its authorised persons and that the onus of ensuring that only authorised personnel access and operate the said account shall, at all times, lies with the user. The user agrees and acknowledges that failure to notify the company regarding any such unauthorised use of its account on the Platform may attract liability on the user for any losses/damages caused by any unauthorised use of the account." Margin="2,0,2,0" FontSize="12"/>
+                <Label FontFamily="AppTextFont" TextColor="#3F4948" Text="." FontAttributes="Bold" VerticalOptions="Start" Margin=" 10,-13,5,0" FontSize="20"/>
+            </Grid  >
+            <Grid ColumnDefinitions="auto, *" Margin="0,0,0,40"> 
+                <Label FontFamily="AppTextFont" TextColor="#3F4948" Grid.Column="1" CharacterSpacing="0.8" Text="(k)The availing of the Services and the use of Platform is only for purposes permitted by: (i) the T&amp;C and (ii) any applicable law, regulation or generally accepted practices or guidelines and the same shall not be for any other illegal or other purpose which is expressly or impliedly barred by any applicable law, statute, ordinance or regulation in force from time to time." Margin="2,0,2,0" FontSize="12"/>
+
+                <Label FontFamily="AppTextFont" TextColor="#3F4948" Text="." FontAttributes="Bold" VerticalOptions="Start" Margin=" 10,-13,5,0" FontSize="20"/>
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
